@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+
+.orange .ui-dropdown	{
+    color:white !important;
+    background-color:#FF7F50 !important;
+}
+.orange .ui-dropdown-label	{
+    color:white !important;
+    background-color:#FF7F50 !important;
+}
+
+.orange .ui-dropdown-label:hover{
+    color:black;
+}
+.orange .ui-dropdown-item	{
+    color:white;
+    background-color:#FF7F50 !important;
+}
+
+.purple .ui-dropdown	{
+    color:white !important;
+    background-color:#e286de !important;
+}
+.purple .ui-dropdown-label	{
+    color:white !important;
+    background-color:#e286de !important;
+}
+
+.purple .ui-dropdown-label:hover{
+    color:black !important;
+}
+.purple .ui-dropdown-item	{
+    color:white !important;
+    background-color:#e286de !important;
+}
+
+.orange .ui-datatable .ui-datatable-thead > tr > th,
+.orange .ui-datatable .ui-datatable-tfoot > tr > td,
+.orange .ui-datatable .ui-datatable-data > tr > td {
+    border-color: inherit;
+    box-sizing: border-box;
+    padding: .25em .5em;
+    border: 1px solid;
+    background-color: #FF7F50;
+}
+
+.purple .ui-datatable .ui-datatable-thead > tr > th,
+.purple .ui-datatable .ui-datatable-tfoot > tr > td,
+.purple .ui-datatable .ui-datatable-data > tr > td {
+    border-color: inherit;
+    box-sizing: border-box;
+    padding: .25em .5em;
+    border: 1px solid !important;
+    background-color: #e286de !important;
+}
+
+/*
+modifying sweetalerts
+
+.swal2-title{
+    background-color: black;
+}
+
+h2#swal2-title.swal2-title{
+    background-color: #FF7F50 !important;
+}
+
+body.swal2-shown .orange.swal2-popup .swal2-content{
+    background-color: #ebb989 !important;
+}
+*/
+.orange.swal2-popup {
+    background-color: #FF7F50 !important;
+}
+
+.purple.swal2-popup {
+    background-color: #e286de !important;
+}
+
+.orange.swal2-popup .swal2-content {
+    background-color: #ebb989 !important;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 300;
+}
+
+.purple.swal2-popup .swal2-content {
+    background-color: #f0cbf0 !important;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 300;
+}
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';

@@ -1,0 +1,317 @@
+<html>
+    <head>
+        <link rel="stylesheet" 
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+            crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+            crossorigin="anonymous"></script>
+        <style>
+            .navbar-light {
+                background-color: #e3f2fd;
+            }
+            body {
+                width: 70%;
+                margin-left: 15%;
+                margin-left: 15%;
+                border: 1px solid gray;
+            }
+            .code-block {
+                background-color: #f7f7f9; 
+                border: 1px solid #f7f7f9; 
+                vertical-align: top;
+            }
+            .display-block {
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+            table {
+                width: 100%;
+            }
+        </style>
+        <script src="../../highlighter.js"></script>
+        <script>
+            function highlight() {
+                codeHighlighter('bootstrapTable');
+                codeHighlighter('bootstrapTableHover');
+                codeHighlighter('bootstrapTableContextual');
+            }
+            function showCode(codeField) {
+                document.getElementById(codeField).style.display = 'block';
+                document.getElementById(codeField + 'Show').style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'block'; 
+            }
+            function hideCode(codeField) {
+                document.getElementById(codeField + 'Show').style.display = 'block';
+                document.getElementById(codeField).style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'none';       
+            }
+        </script>
+    </head>
+    <body onload="highlight()">
+        <div id="header">
+            <table>
+                <tr>
+                    <td style="width: 30%; padding-left: 10px;"><a href="../../index.html">Home</a></td>
+                    <td style="width: 40%; text-align: center;"><h3>Bootstrap Tables</h3></td>
+                    <td style="width: 30%; text-align: right; padding-right: 10px;"><a href="../primeng-tables/index-ng.html" >Next</a></td>
+                </tr>
+            </table>
+        </div>
+        
+        <table>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Bordered</legend>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Adhir</td>
+                                    <td>Aima</td>
+                                    <td>adhir.aima@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Adhir2</td>
+                                    <td>Aima2</td>
+                                    <td>adhir.aima@customerxps.com</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Adhir Aima III</td>
+                                    <td>adhir.aima@xy.co</td>
+                                </tr>
+                            </tbody>
+                        </table>         
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="bootstrapTableShow" onclick="showCode('bootstrapTable')">Show Code</a>
+                        <button id="bootstrapTableHide" onclick="hideCode('bootstrapTable')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="bootstrapTable" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;table class="table table-bordered"&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                        &lt;th scope="col"&gt;#&lt;/th&gt;
+                        &lt;th scope="col"&gt;First&lt;/th&gt;
+                        &lt;th scope="col"&gt;Last&lt;/th&gt;
+                        &lt;th scope="col"&gt;Email&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;th scope="row"&gt;1&lt;/th&gt;
+                            &lt;td&gt;Adhir&lt;/td&gt;
+                            &lt;td&gt;Aima&lt;/td&gt;
+                            &lt;td&gt;adhir.aima@gmail.com&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;th scope="row"&gt;2&lt;/th&gt;
+                            &lt;td&gt;Adhir2&lt;/td&gt;
+                            &lt;td&gt;Aima2&lt;/td&gt;
+                            &lt;td&gt;adhir.aima@customerxps.com&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;th scope="row"&gt;3&lt;/th&gt;
+                            &lt;td colspan="2"&gt;Adhir Aima III&lt;/td&gt;
+                            &lt;td&gt;adhir.aima@xy.co&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Hover</legend>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Adhir</td>
+                                    <td>Aima</td>
+                                    <td>adhir.aima@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Adhir2</td>
+                                    <td>Aima2</td>
+                                    <td>adhir.aima@customerxps.com</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Adhir Aima III</td>
+                                    <td>adhir.aima@xy.co</td>
+                                </tr>
+                            </tbody>
+                        </table>         
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="bootstrapTableHoverShow" onclick="showCode('bootstrapTableHover')">Show Code</a>
+                        <button id="bootstrapTableHoverHide" onclick="hideCode('bootstrapTableHover')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="bootstrapTableHover" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;table class="table table-hover"&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                        &lt;th scope="col"&gt;#&lt;/th&gt;
+                        &lt;th scope="col"&gt;First&lt;/th&gt;
+                        &lt;th scope="col"&gt;Last&lt;/th&gt;
+                        &lt;th scope="col"&gt;Email&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;th scope="row"&gt;1&lt;/th&gt;
+                            &lt;td&gt;Adhir&lt;/td&gt;
+                            &lt;td&gt;Aima&lt;/td&gt;
+                            &lt;td&gt;adhir.aima@gmail.com&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;th scope="row"&gt;2&lt;/th&gt;
+                            &lt;td&gt;Adhir2&lt;/td&gt;
+                            &lt;td&gt;Aima2&lt;/td&gt;
+                            &lt;td&gt;adhir.aima@customerxps.com&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;th scope="row"&gt;3&lt;/th&gt;
+                            &lt;td colspan="2"&gt;Adhir Aima III&lt;/td&gt;
+                            &lt;td&gt;adhir.aima@xy.co&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Contextual Rows</legend>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="table-primary">
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-secondary">
+                                    <th scope="row">1</th>
+                                    <td>Adhir</td>
+                                    <td>Aima</td>
+                                    <td>adhir.aima@gmail.com</td>
+                                </tr>
+                                <tr class="table-success">
+                                    <th scope="row">2</th>
+                                    <td>Adhir2</td>
+                                    <td>Aima2</td>
+                                    <td>adhir.aima@customerxps.com</td>
+                                </tr>
+                                <tr class="table-danger">
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Adhir Aima III</td>
+                                    <td>adhir.aima@xy.co</td>
+                                </tr>
+                            </tbody>
+                        </table>         
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="bootstrapTableContextualShow" onclick="showCode('bootstrapTableContextual')">Show Code</a>
+                        <button id="bootstrapTableContextualHide" onclick="hideCode('bootstrapTableContextual')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="bootstrapTableContextual" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;table class="table table-hover"&gt;
+                    &lt;thead&gt;
+                        &lt;tr class="table-primary"&gt;
+                            &lt;th scope="col"&gt;#&lt;/th&gt;
+                            &lt;th scope="col"&gt;First&lt;/th&gt;
+                            &lt;th scope="col"&gt;Last&lt;/th&gt;
+                            &lt;th scope="col"&gt;Email&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                        &lt;tr class="table-secondary"&gt;
+                            &lt;th scope="row"&gt;1&lt;/th&gt;
+                            &lt;td&gt;Adhir&lt;/td&gt;
+                            &lt;td&gt;Aima&lt;/td&gt;
+                            &lt;td&gt;adhir.aima@gmail.com&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr class="table-success"&gt;
+                            &lt;th scope="row"&gt;2&lt;/th&gt;
+                            &lt;td&gt;Adhir2&lt;/td&gt;
+                            &lt;td&gt;Aima2&lt;/td&gt;
+                            &lt;td&gt;adhir.aima@customerxps.com&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr class="table-danger"&gt;
+                            &lt;th scope="row"&gt;3&lt;/th&gt;
+                            &lt;td colspan="2"&gt;Adhir Aima III&lt;/td&gt;
+                            &lt;td&gt;adhir.aima@xy.co&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,258 @@
+<html>
+    <head>
+        <script type="text/javascript" src="../i10n.js"></script>
+        <link rel="localizations" href="./i18n.json" type="application/l10n+json"/>
+        <link rel="stylesheet" 
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+            crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+            crossorigin="anonymous"></script>
+        <style>
+            .navbar-light {
+                background-color: #e3f2fd;
+            }
+            body {
+                width: 70%;
+                margin-left: 15%;
+                margin-left: 15%;
+                border: 1px solid gray;
+                height: 90%;
+            }
+            .code-block {
+                background-color: #f7f7f9; 
+                border: 1px solid #f7f7f9; 
+                vertical-align: top;
+            }
+            .display-block {
+                width: 100%;
+            }
+            table {
+                width: 100%;
+            }
+            .form-class {
+                margin-left: 25%;
+                margin-left: 25%;
+            }
+        </style>
+        <script src="../highlighter.js"></script>
+        <script>
+            function highlight() {
+                html10n.bind("localized", function() {
+                    console.log("Localized!");
+                });
+                codeHighlighter('localizedFormTable');
+            }
+            function showCode(codeField) {
+                document.getElementById(codeField).style.display = 'block';
+                document.getElementById(codeField + 'Show').style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'block'; 
+            }
+            function hideCode(codeField) {
+                document.getElementById(codeField + 'Show').style.display = 'block';
+                document.getElementById(codeField).style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'none';       
+            }
+            function switchLang(lang) {
+                html10n.localize(lang);
+            }
+        </script>
+    </head>
+    <body onload="highlight()">
+        <div id="header">
+            <table>
+                <tr>
+                    <td style="width: 30%; padding-left: 10px;"><a href="../index.html">Home</a></td>
+                    <td style="width: 40%; text-align: center;"><h3>I18n on Client Side</h3></td>
+                    <td style="width: 30%; text-align: right; padding-right: 10px;"><a href="../i18n/index.html" >Next</a></td>
+                </tr>
+            </table>
+        </div>
+        <form>
+            <fieldset>
+                <h4>Select Language</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="radio" name="langSel" value="en" onclick="switchLang('en')" checked="checked"/>English
+                        </td>
+                        <td>
+                            <input type="radio" name="langSel" value="fr" onclick="switchLang('fr')"/>French
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <form id="i18nForm" class="form-class">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label data-l10n-id="unamelabel">User Name</label>: 
+                                    </td>
+                                    <td>
+                                        <input type="text" id="i18nFormUname" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label data-l10n-id="addrlabel">Address</label>:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="i18nFormAddr" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label data-l10n-id="fnamelabel">First Name</label>:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="i18nFormFname" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label data-l10n-id="lnamelabel">Last Name</label>:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="i18nFormLname" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-l10n-id="submitlabel" title="submitlabel">Submit Form</button>
+                                    </td>
+                                    <td>
+                                        <button data-l10n-id="cancellabel" title="cancellabel">Clear</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                        <button data-l10n-id="test" title="click me!">click me!</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="localizedFormTableShow" onclick="showCode('localizedFormTable')">Show Code</a>
+                        <button id="localizedFormTableHide" onclick="hideCode('localizedFormTable')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="localizedFormTable" class="code-block" style="display: none;">
+                        <pre><code>
+                        Includes
+                        ========
+
+                        &lt;script type="text/javascript" src="../i10n.js"&gt;&lt;/script&gt;
+                        &lt;link rel="localizations" href="./i18n.json" type="application/l10n+json"/&gt;
+                        
+                        i18n.json
+                        =========
+
+                        {
+                            "en": {
+                              "test": "This is a test Form",
+                              "test.title": "click me!",
+                              "unamelabel": "User Name",
+                              "addrlabel": "Address",
+                              "fnamelabel": "First Name",
+                              "lnamelabel": "Last Name",
+                              "submitlabel": "Submit Form",
+                              "cancellabel": "Clear"
+                            },
+                            "fr": {
+                              "test": "Ceci est un test Formulaire",
+                              "test.title": "cliquez-moi!",
+                              "unamelabel": "Nom d'utilisateur",
+                              "addrlabel": "Adresse",
+                              "fnamelabel": "Prénom",
+                              "lnamelabel": "Nom de famille",
+                              "submitlabel": "Envoyer un formulaire",
+                              "cancellabel": "Effacer"
+                            }
+                        }
+
+
+                        Script (on load)
+                        ================
+
+                        html10n.bind("localized", function() {
+                            console.log("Localized!");
+                        });
+
+                        Script (Switch Language/locale)
+                        ===============================
+                        function switchLang(lang) {
+                            html10n.localize(lang);
+                        }
+
+                        &lt;form id="i18nForm" class="form-class"&gt;
+                            &lt;table&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;
+                                        &lt;label data-l10n-id="unamelabel"&gt;User Name&lt;/label&gt;: 
+                                    &lt;/td&gt;
+                                    &lt;td&gt;
+                                        &lt;input type="text" id="i18nFormUname" /&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;
+                                        &lt;label data-l10n-id="addrlabel"&gt;Address&lt;/label&gt;:
+                                    &lt;/td&gt;
+                                    &lt;td&gt;
+                                        &lt;input type="text" id="i18nFormAddr" /&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;
+                                        &lt;label data-l10n-id="fnamelabel"&gt;First Name&lt;/label&gt;:
+                                    &lt;/td&gt;
+                                    &lt;td&gt;
+                                        &lt;input type="text" id="i18nFormFname" /&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;
+                                        &lt;label data-l10n-id="lnamelabel"&gt;Last Name&lt;/label&gt;:
+                                    &lt;/td&gt;
+                                    &lt;td&gt;
+                                        &lt;input type="text" id="i18nFormLname" /&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;
+                                        &lt;button data-l10n-id="submitlabel" title="submitlabel"&gt;Submit Form&lt;/button&gt;
+                                    &lt;/td&gt;
+                                    &lt;td&gt;
+                                        &lt;button data-l10n-id="cancellabel" title="cancellabel"&gt;Clear&lt;/button&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                            &lt;/table&gt;
+                        &lt;/form&gt;
+                        &lt;button data-l10n-id="test" title="click me!"&gt;click me!&lt;/button&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+        

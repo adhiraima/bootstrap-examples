@@ -1,0 +1,255 @@
+<html>
+    <head>
+        <link rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+            crossorigin="anonymous"></script>
+        <style>
+            body {
+                width: 70%;
+                margin-left: 15%;
+                margin-left: 15%;
+                border: 1px solid gray;
+            }
+            .code-block {
+                background-color: #f7f7f9; 
+                border: 1px solid #f7f7f9; 
+                vertical-align: top;
+            }
+            .display-block {
+                margin-left: 15%;
+                margin-right: 15%;
+            }
+        </style>
+        <script src="../../highlighter.js"></script>
+        <script>
+            function highlight() {
+                codeHighlighter('bootstrapForm');
+            }
+            function showCode(codeField) {
+                document.getElementById(codeField).style.display = 'block';
+                document.getElementById(codeField + 'Show').style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'block'; 
+            }
+            function hideCode(codeField) {
+                document.getElementById(codeField + 'Show').style.display = 'block';
+                document.getElementById(codeField).style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'none';       
+            }
+        </script>
+    </head>
+    <body onload="highlight()">
+        <div id=header>
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 30%; padding-left: 10px;"><a href="../../index.html">Home</a></td>
+                    <td style="width: 40%; text-align: center;"><h3>Bootstrap Form</h3></td>
+                    <td style="width: 30%; text-align: right; padding-right: 10px;"><a href="../bootstrap-grid-form/index.html" >Next</a></td>
+                </tr>
+            </table>
+        </div>
+        
+        <table style="border: solid #f7f7f9; width: 100%">
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Form Elements</legend>
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelect1">Example select</label>
+                                <select class="form-control" id="exampleSelect1">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelect2">Example multiple select</label>
+                                <select multiple class="form-control" id="exampleSelect2">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleTextarea">Example textarea</label>
+                                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                                <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                            </div>
+                            <fieldset class="form-group">
+                                <legend>Radio buttons</legend>
+                                <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                    Option one is this and that&mdash;be sure to include why it's great
+                                </label>
+                                </div>
+                                <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                                    Option two can be something else and selecting it will deselect option one
+                                </label>
+                                </div>
+                                <div class="form-check disabled">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+                                    Option three is disabled
+                                </label>
+                                </div>
+                            </fieldset>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                                Check me out
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <legend>Sizing</legend>
+                                <select class="form-control form-control-lg">
+                                    <option>Large select</option>
+                                </select>
+                                <select class="form-control">
+                                    <option>Default select</option>
+                                </select>
+                                <select class="form-control form-control-sm">
+                                    <option>Small select</option>
+                                </select> <br>
+                                <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
+                                <input class="form-control" type="text" placeholder="Default input">
+                                <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="bootstrapFormShow" onclick="showCode('bootstrapForm')">Show Code</a>
+                        <button id="bootstrapFormHide" onclick="hideCode('bootstrapForm')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="bootstrapForm" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;form id="bootstrapForm"&gt;
+                    &lt;div class="form-group" id="&gt;
+                        &lt;label for="exampleInputEmail1"&gt;Email address&lt;/label&gt;
+                        &lt;input type="email" class="form-control" id="bootstrapFormEmail1" aria-describedby="emailHelp" placeholder="Enter email"&gt;
+                        &lt;small id="emailHelp" class="form-text text-muted"&gt;We'll never share your email with anyone else.&lt;/small&gt;
+                    &lt;/div&gt;
+                    &lt;div class="form-group"&gt;
+                        &lt;label for="exampleInputPassword1"&gt;Password&lt;/label&gt;
+                        &lt;input type="password" class="form-control" id="bootstrapFormPassword1" placeholder="Password"&gt;
+                    &lt;/div&gt;
+                    &lt;div class="form-group"&gt;
+                        &lt;label for="exampleSelect1"&gt;Example select&lt;/label&gt;
+                        &lt;select class="form-control" id="bootstrapFormSelect1"&gt;
+                        &lt;option&gt;1&lt;/option&gt;
+                        &lt;option&gt;2&lt;/option&gt;
+                        &lt;option&gt;3&lt;/option&gt;
+                        &lt;option&gt;4&lt;/option&gt;
+                        &lt;option&gt;5&lt;/option&gt;
+                        &lt;/select&gt;
+                    &lt;/div&gt;
+                    &lt;div class="form-group"&gt;
+                        &lt;label for="exampleSelect2"&gt;Example multiple select&lt;/label&gt;
+                        &lt;select multiple class="form-control" id="bootstrapFormSelect2"&gt;
+                        &lt;option&gt;1&lt;/option&gt;
+                        &lt;option&gt;2&lt;/option&gt;
+                        &lt;option&gt;3&lt;/option&gt;
+                        &lt;option&gt;4&lt;/option&gt;
+                        &lt;option&gt;5&lt;/option&gt;
+                        &lt;/select&gt;
+                    &lt;/div&gt;
+                    &lt;div class="form-group"&gt;
+                        &lt;label for="exampleTextarea"&gt;Example textarea&lt;/label&gt;
+                        &lt;textarea class="form-control" id="bootstrapFormTextarea" rows="3"&gt;&lt;/textarea&gt;
+                    &lt;/div&gt;
+                    &lt;div class="form-group"&gt;
+                        &lt;label for="exampleInputFile"&gt;File input&lt;/label&gt;
+                        &lt;input type="file" class="form-control-file" id="bootstrapFormInputFile" aria-describedby="fileHelp"&gt;
+                        &lt;small id="fileHelp" class="form-text text-muted"&gt;This is placeholder help for above. It's light and easily wraps.&lt;/small&gt;
+                    &lt;/div&gt;
+                    &lt;fieldset class="form-group"&gt;
+                        &lt;legend&gt;Radio buttons&lt;/legend&gt;
+                        &lt;div class="form-check"&gt;
+                        &lt;label class="form-check-label"&gt;
+                            &lt;input type="radio" class="form-check-input" name="optionsRadios" id="bootstrapFormRadios1" value="option1" checked&gt;
+                            Option one is this and that&mdash;be sure to include why it's great
+                        &lt;/label&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-check"&gt;
+                        &lt;label class="form-check-label"&gt;
+                            &lt;input type="radio" class="form-check-input" name="optionsRadios" id="bootstrapFormRadios2" value="option2"&gt;
+                            Option two can be something else and selecting it will deselect option one
+                        &lt;/label&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-check disabled"&gt;
+                        &lt;label class="form-check-label"&gt;
+                            &lt;input type="radio" class="form-check-input" name="optionsRadios" id="bootstrapFormRadios3" value="option3" disabled&gt;
+                            Option three is disabled
+                        &lt;/label&gt;
+                        &lt;/div&gt;
+                    &lt;/fieldset&gt;
+                    &lt;div class="form-check"&gt;
+                        &lt;label class="form-check-label"&gt;
+                        &lt;input type="checkbox" id="bootstrapFormCheckBox1" class="form-check-input"&gt;
+                        Check me out
+                        &lt;/label&gt;
+                    &lt;/div&gt;
+                    &lt;div class="form-check"&gt;
+                        &lt;label class="form-check-label"&gt;Sizing&lt;/label&gt;
+                        &lt;select id="bootstrapFormSelect1" class="form-control form-control-lg"&gt;
+                            &lt;option&gt;Large select&lt;/option&gt;
+                        &lt;/select&gt;
+                        &lt;select id="bootstrapFormSelect2" class="form-control"&gt;
+                            &lt;option&gt;Default select&lt;/option&gt;
+                        &lt;/select&gt;
+                        &lt;select id="bootstrapFormSelect3" class="form-control form-control-sm"&gt;
+                            &lt;option&gt;Small select&lt;/option&gt;
+                        &lt;/select&gt; &lt;br&gt;
+                        &lt;input id="bootstrapFormText1" class="form-control form-control-lg" type="text" placeholder=".form-control-lg"&gt;
+                        &lt;input id="bootstrapFormText2" class="form-control" type="text" placeholder="Default input"&gt;
+                        &lt;input id="bootstrapFormText3" class="form-control form-control-sm" type="text" placeholder=".form-control-sm"&gt;
+                    &lt;/div&gt;
+                    &lt;button type="submit" id="bootstrapFormSubmit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+                &lt;/form&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

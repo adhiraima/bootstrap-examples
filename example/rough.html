@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Autocomplete - Multiple values</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        var typeSelected = "";
+        var typSel = false;
+        var opSel = false;
+        var currMenu = "";
+        var classSelected = "";
+        var opSelected = "";
+        $(function () {
+            var availableTags = [
+                "Name",
+                "Job",
+                "Experience",
+                "City"
+            ];
+            var operatorMap = {
+                "string": ["contains"],
+                "number": [">", "<", "=", "[-]"]
+            };
+
+            var typeMap = {
+                "Name": "string",
+                "Job": "string",
+                "Experience": "number",
+                "City": "string"
+            }
+
+            function split(val) {
+                return val.split(/,\s*/);
+            }
+
+            function extractLast(term) {
+                return split(term).pop();
+            }
+
+            $("#DataTableFilter")
+                .on("keyup", function (event) {
+                    if (typSel && opSel) {
+                        var searchTerm = $("#DataTableFilter").val().split(':')[1].trim();
+                        
+                        if (searchTerm.trim().length <= 0) return;
+                        
+                        if ((opSelected === '[-]') && (searchTerm.match(/\[[0-9]-[0-9]\]/i) === null)) {
+                            return;
+                        }
+                        
+                        var listItem = $('.results tbody tr').children('td' + '.' + classSelected);
+
+                        var searchSplit = searchTerm.replace(/ /g, "'):containsi('");
+
+                        if (typeSelected === "string") {
+                            $.extend($.expr[':'], {
+                                'containsi': function (elem, i, match, array) {
+                                    return (elem.textContent || elem.innerText || '').toLowerCase()
+                                        .indexOf((match[3] || "").toLowerCase()) >= 0;
+                                }
+                            });
+                        }
+
+                        if (typeSelected === "number") {
+                            if (opSelected === "=") {
+                                $.extend($.expr[':'], {
+                                    'containsi': function (elem, i, match, array) {
+                                        return parseInt(elem.textContent || elem.innerText ||
+                                            '0') = (match[3] || 0);
+                                    }
+                                });
+                            } else if (opSelected === ">") {
+                                $.extend($.expr[':'], {
+                                    'containsi': function (elem, i, match, array) {
+                                        return parseInt(elem.textContent || elem.innerText ||
+                                            '0') > (match[3] || 0);
+                                    }
+                                });
+                            } else if (opSelected === "<") {
+                                $.extend($.expr[':'], {
+                                    'containsi': function (elem, i, match, array) {
+                                        return parseInt(elem.textContent || elem.innerText ||
+                                            '0') < (match[3] || 0);
+                                    }
+                                });
+                            } else if (opSelected === "[-]") {
+                                var lowerBound = parseInt(searchTerm.split("-")[0].split("[")[1]);
+                                var upperBound = parseInt(searchTerm.split("-")[1].split("]")[0]);
+                                $.extend($.expr[':'], {
+                                    'containsi': function (elem, i, match, array) {
+                                        return parseInt(elem.textContent || elem.innerText || '0') >= lowerBound
+                                                    &&  parseInt(elem.textContent || elem.innerText || '0') <= upperBound;
+                                    }
+                                });
+                            }
+                        }
+
+                        $(".results tbody tr").children('td.' + classSelected).not(":containsi('" +
+                            searchSplit + "')").each(function (e) {
+                            $(this).parent().hide();
+                        });
+
+                        $(".results tbody tr").children("td." + classSelected + ":containsi('" +
+                            searchSplit + "')").each(function (e) {
+                            $(this).parent().show();
+                        });
+
+                        var jobCount = $('.results tbody tr:visible').length;
+
+                        $('.counter').text(jobCount + ' item');
+
+                        if (jobCount == '0') {
+                            $('.no-result').show();
+                        } else {
+                            $('.no-result').hide();
+                        }
+                    }
+                    if (event.keyCode === $.ui.keyCode.TAB &&
+                        $(this).autocomplete("instance").menu.active) {
+                        event.preventDefault();
+                    }
+                })
+                .autocomplete({
+                    minLength: 0,
+                    source: function (request, response) {
+                        if (typeSelected == "") {
+                            response($.ui.autocomplete.filter(
+                                availableTags, extractLast(request.term)));
+                            currMenu = availableTags;
+                        }
+                        if (typSel) {
+                            response($.ui.autocomplete.filter(
+                                operatorMap[typeSelected], extractLast(request.term)));
+                            currMenu = operatorMap[typeSelected];
+                        }
+                    },
+                    focus: function () {
+                        // prevent value inserted on focus
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        if (currMenu === operatorMap[typeSelected]) {
+                            opSel = true;
+                            var terms = split(this.value);
+                            terms.pop();
+                            terms.push(ui.item.value);
+                            opSelected = ui.item.value;
+                            terms.push(" : ");
+                            this.value = terms.join(" ");
+                            return false;
+                        } else {
+                            typSel = true;
+                            opSel = false;
+                            classSelected = ui.item.value;
+                            typeSelected = typeMap[ui.item.value];
+                            var terms = split(this.value);
+                            terms.pop();
+                            terms.push(ui.item.value);
+                            terms.push("");
+                            this.value = terms.join(", ");
+                            return false;
+                        }
+                    }
+                });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="ui-widget">
+        <label for="DataTableFilter">Search: </label>
+        <!-- <input id="DataTableFilter" size="50"> -->
+        <div class="form-group pull-right">
+            <input type="text" class="search form-control autocomplete" id="DataTableFilter" placeholder="Type away for assistance...">
+        </div>
+        <span class="counter pull-right"></span>
+        <table class="table table-hover table-bordered results">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th class="col-md-3 col-xs-3">Name / Surname</th>
+                    <th class="col-md-3 col-xs-3">Job</th>
+                    <th class="col-md-3 col-xs-3">Experience</th>
+                    <th class="col-md-3 col-xs-3">City</th>
+                </tr>
+                <tr class="warning no-result">
+                    <td colspan="4">
+                        <i class="fa fa-warning"></i> No result</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="searchable">
+                    <th scope="row">1</th>
+                    <td class="Name">Vatanay Özbeyli</td>
+                    <td class="Job">UI & UX</td>
+                    <td class="Experience">14</td>
+                    <td class="City">Istanbul</td>
+                </tr>
+                <tr class="searchable">
+                    <th scope="row">2</th>
+                    <td class="Name">Burak Özkan</td>
+                    <td class="Job">Software Developer</td>
+                    <td class="Experience">8</td>
+                    <td class="City">Istanbul</td>
+                </tr>
+                <tr class="searchable">
+                    <th scope="row">3</th>
+                    <td class="Name">Egemen Özbeyli</td>
+                    <td class="Job">Purchasing</td>
+                    <td class="Experience">12</td>
+                    <td class="City">Kocaeli</td>
+                </tr>
+                <tr class="searchable">
+                    <th scope="row">4</th>
+                    <td class="Name">Engin Kızıl</td>
+                    <td class="Job">Sales</td>
+                    <td class="Experience">9</td>
+                    <td class="City">Bozuyük</td>
+                </tr>
+                <tr class="searchable">
+                    <th scope="row">5</th>
+                    <td class="Name">Adhir Aima</td>
+                    <td class="Job">Fullstack</td>
+                    <td class="Experience">14</td>
+                    <td class="City">Bengaluru</td>
+                </tr>
+                <tr class="searchable">
+                    <th scope="row">6</th>
+                    <td class="Name">Shehjaar Aima</td>
+                    <td class="Job">Python Developer</td>
+                    <td class="Experience">6</td>
+                    <td class="City">New York</td>
+                </tr>
+                <tr class="searchable">
+                    <th scope="row">7</th>
+                    <td class="Name">Sabzaar Aima</td>
+                    <td class="Job">Go Lang</td>
+                    <td class="Experience">1</td>
+                    <td class="City">Los Angeles</td>
+                </tr>
+                <tr class="searchable">
+                    <th scope="row">8</th>
+                    <td class="Name">Akanksha Koul</td>
+                    <td class="Job">Project Managemengt</td>
+                    <td class="Experience">11</td>
+                    <td class="City">Paris</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</body>
+
+</html>

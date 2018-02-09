@@ -1,0 +1,115 @@
+h1.purple {
+    background-color: #800080;
+}
+h2.purple {
+    background-color: #800080;
+}
+h3.purle {
+    background-color: #800080;
+}
+h4.purple {
+    background-color: #800080;
+}
+h5.purple {
+    background-color: #800080;
+}
+h6.purple {
+    background-color: #800080;
+}
+header.purple {
+    background-color: #800080;
+}
+footer.purple {
+    background-color: #800080;
+}
+thead tr th.purple {
+    background-color: #e286de;
+}
+tfoot tr td.purple {
+    background-color: #f8eff8;
+}
+tbody tr td.purple {
+    background-color: #f0cbf0;
+}
+.purple.swal2-contentwrapper {
+    background-color: #e286de;
+}
+
+h1.orange {
+    background-color: #FF7F50;
+}
+h2.orange {
+    background-color: #FF7F50;
+}
+h3.orange {
+    background-color: #FF7F50;
+}
+h4.orange {
+    background-color: #FF7F50;
+}
+h5.orange {
+    background-color: #FF7F50;
+}
+h6.orange {
+    background-color: #FF7F50;
+}
+header.orange {
+    background-color: #FF7F50;
+}
+footer.orange {
+    background-color: #FF7F50;
+}
+thead tr th.orange {
+    background-color: #c45104;
+}
+tfoot tr td.orange {
+    background-color: #f8f3ef;
+}
+tbody tr td.orange {
+    background-color: #ebb989;
+}
+mat-option.purple {
+  color:white !important;
+  background-color:#e286de !important;
+}
+/* body.swal2-shown .swal2-container.swal2-center.swal2-fade.swal2-shown .swal2-popup.swal2-modal.orange.swal2-show .swal2-contentwrapper .swal2-title{
+    background-color: #FF7F50 !important;
+    background: #FF7F50 !important;
+}  */
+
+/* .swal2-container.swal2-center.swal2-fade.swal2-shown   .swal2-popup.swal2-modal.orange.swal2-show .swal2-container.swal2-center.swal2-fade.swal2-shown */
+
+.swal2-title{
+    background-color: black;
+}
+
+h2#swal2-title.swal2-title{
+    background-color: #FF7F50 !important;
+}
+
+body.swal2-shown .orange.swal2-popup .swal2-content{
+    background-color: #ebb989 !important;
+}
+
+.swal2-popup .swal2-title {
+    background-color: #FF7F50 !important;
+}
+
+.swal2-popup .swal2-content {
+    background-color: #ebb989 !important;
+    font-size: 3px;
+    text-align: center;
+    font-weight: 100;
+}
+
+.swal2-cancel{
+    background-color: black !important;
+}
+
+.swal2-title{
+    background-color: black;
+}
+
+.orange {
+    background-color: #FF7F50 !important;
+}

@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <link rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+            crossorigin="anonymous"></script>
+        <style>
+            body {
+                margin-left: 15%;
+                margin-right: 15%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id=header>
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 30%; padding-left: 10px;"><a href="./index.html">Home</a></td>
+                    <td style="width: 40%; text-align: center;"><h3>Introduction</h3></td>
+                    <td style="width: 30%; text-align: right; padding-right: 10px;"><a href="./forms/bootstrap-form/index.html">Start</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <p>The examples use bootstrap, jquery and popper. You can either put them up in the cxps CDN or put the permlink CDN links like this in HTML pages.
+        </p>
+        <p><pre><code>
+        &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"&gt;
+        </code></pre></p>
+        <p><pre><code>
+        &lt;script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"&gt;
+        &lt;/script&gt;
+        </code></pre></p>
+        <p><pre><code>
+        &lt;script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"&gt;
+        &lt;/script&gt;
+        </code></pre></p> 
+        <p><pre><code>
+        &lt;script 
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"&gt;
+        &lt;/script&gt;
+        </code></pre></p>
+        <legend>Best Practices</legend>
+        <ul>
+            <li>Please <strong>DO NOT USE</strong> in-line styling. Use Precompilers and or externalize all the style in a single file which can be duplicated for theme-ing without extra effort.</li>
+            <li>Please <strong>USE IDs</strong> for every element possible on the page. If you use angular, please use IDs in the component templates or the template in-line in the TS file.</li>
+            <li>Please write unit tests for the components and services in the front-end code. Please estimate with the buffer for writing tests.</li>
+            <li>Please use proper naming conventions. e.g. a formID is formXYZ then the name i/p field should have the id formXYZName. Or you are free to choose any convention that is logical and clear.<br>Remember the http request uses the name to make the param name not ID. ID is only for the DOM. This make the code easy to test using tools like selenium etc.</li>
+            <li>Please use a lint tool in the IDE, this will help in keeping the code clean <a href="https://github.com/progre/tslint-config-airbnb/blob/master/tslint.js">SAMPLE</a></li>
+        </ul>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+        crossorigin="anonymous"></script>
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+        crossorigin="anonymous"></script>
+    <script 
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+        crossorigin="anonymous"></script>
+    <style>
+      .navbar-light {
+          background-color: #e3f2fd;
+      }
+      body {
+          width: 70%;
+          margin-left: 15%;
+          margin-left: 15%;
+          border: 1px solid gray;
+          height: 90%;
+      }
+      .code-block {
+          background-color: #f7f7f9; 
+          border: 1px solid #f7f7f9; 
+          vertical-align: top;
+      }
+      .display-block {
+          width: 100%;
+      }
+      table {
+          width: 100%;
+      }
+    </style>
+    <script src="../../highlighter.js"></script>
+    <script>
+        function highlight() {
+            codeHighlighter('primengTable');
+        }
+        function showCode(codeField) {
+            document.getElementById(codeField).style.display = 'block';
+            document.getElementById(codeField + 'Show').style.display = 'none';
+            document.getElementById(codeField + 'Hide').style.display = 'block'; 
+        }
+        function hideCode(codeField) {
+            document.getElementById(codeField + 'Show').style.display = 'block';
+            document.getElementById(codeField).style.display = 'none';
+            document.getElementById(codeField + 'Hide').style.display = 'none';       
+        }
+    </script>
+  </head>
+  <body onload="highlight()">
+    <div id="header">
+        <table>
+            <tr>
+                <td style="width: 30%; padding-left: 10px;"><a href="../../index.html">Home</a></td>
+                <td style="width: 40%; text-align: center;"><h3>Primeng Tables</h3></td>
+                <td style="width: 30%; text-align: right; padding-right: 10px;"><a href="../../i18n/index.html" >Next</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <table>
+        <tr>
+            <td>
+                <div class="display-block">
+                    <object data="./index.html" style="width: 100%; height: 200px;"></object>
+                </div>
+            </td>
+        </tr>
+    </table>  
+    <table>
+        <tr>
+            <td>
+                <div class="display-block">
+                    <button id="primengTableShow" onclick="showCode('primengTable')">Show Code</a>
+                    <button id="primengTableHide" onclick="hideCode('primengTable')" style="display: none;">Hide Code</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="primengTable" class="code-block" style="display: none;">
+                    <pre><code>
+                        app.component.ts
+                        ================
+
+                        import { Component, OnInit } from '@angular/core';
+                        import { SelectItem } from 'primeng/primeng';
+                        
+                        @Component({
+                          selector: 'app-root',
+                          templateUrl: './app.component.html',
+                          styleUrls: ['./app.component.css']
+                        })
+                        export class AppComponent implements OnInit {
+                          data: any[];
+                          data2: any[];
+                          selectedItems: any[];
+                          cols: any[];
+                          cities: SelectItem[];
+                        
+                          ngOnInit() {
+                            this.data = [];
+                            this.data2 = [];
+                            this.selectedItems = [];
+                        
+                            this.cols = [
+                              { field: 'Col1', header: 'Col1', sortable: true, filter: true,
+                                filterMatchMode: 'contains', allowToggle: true, style: { 'vertical-align': 'top' } },
+                              { field: 'Col2', header: 'Col2', sortable: true, filter: true,
+                                filterMatchMode: 'contains', allowToggle: true, style: { 'vertical-align': 'top' } },
+                              { field: 'Col3', header: 'Col3', sortable: true, filter: true,
+                                filterMatchMode: 'contains', allowToggle: true, style: { 'vertical-align': 'top' } },
+                              { field: 'Col4', header: 'Col4', sortable: true, filter: true,
+                                filterMatchMode: 'contains', allowToggle: true, style: { 'vertical-align': 'top' } },
+                              { field: 'Col5', header: 'Col5', sortable: true, filter: true,
+                                filterMatchMode: 'contains', allowToggle: true, style: { 'vertical-align': 'top' } },
+                              { field: 'Col6', header: 'Col6', sortable: true, filter: true,
+                                filterMatchMode: 'contains', allowToggle: true, style: { 'vertical-align': 'top' } },
+                              { field: 'Col7', header: 'Col7', sortable: true, filter: true,
+                                filterMatchMode: 'contains', allowToggle: true, style: { 'vertical-align': 'top' } }
+                            ];
+                        
+                        
+                            for (let i = 0; i < 5; i++) {
+                              let group = 0;
+                        
+                              if (i > 24) {
+                                group = 1;
+                              }
+                        
+                              this.data.push({Col1: 'Value1' + i, Col2: 'Value' + group,
+                                Col3: Math.round((Math.random() * 1000000000) % 1000000),
+                                Col4: 'Value4', Col5: 'Value5', Col6: 'Value6', Col7: 'Value7'});
+                            }
+                          }
+                        }
+
+
+                        app.module.ts
+                        =============
+                        import { BrowserModule } from '@angular/platform-browser';
+                        import { NgModule } from '@angular/core';
+                        
+                        
+                        import { AppComponent } from './app.component';
+                        
+                        import { DataTableModule } from 'primeng/primeng';
+                        
+                        @NgModule({
+                          declarations: [
+                            AppComponent
+                          ],
+                          imports: [
+                            BrowserModule,
+                            DataTableModule
+                          ],
+                          providers: [],
+                          bootstrap: [AppComponent]
+                        })
+                        export class AppModule { }
+
+
+                        app.component.html
+                        ==================
+
+                        &lt;div&gt;
+                            &lt;p-dataTable [value]="data"&gt;
+                                &lt;p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"&gt;&lt;/p-column&gt;
+                            &lt;/p-dataTable&gt;
+                        &lt;/div&gt;
+                    </code></pre>
+                </div>
+            </td>
+        </tr>
+    </table>  
+  </body>
+</html>

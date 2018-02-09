@@ -1,0 +1,334 @@
+<html>
+        <head>
+            <style>
+                label {
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+                .form-control {
+                    display: block;
+                    width: 100%;
+                    height: 34px;
+                    padding: 6px 12px;
+                    font-size: 14px;
+                    line-height: 1.42857143;
+                    color: #555;
+                    background-color: #fff;
+                    background-image: none;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+                    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                }
+    
+                .form-control-multi {
+                    display: block;
+                    width: 100%;
+                    height: 100px;
+                    padding: 6px 12px;
+                    font-size: 14px;
+                    line-height: 1.42857143;
+                    color: #555;
+                    background-color: #fff;
+                    background-image: none;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+                    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                }
+                
+                btn-primary {
+                    color: #fff;
+                    background-color: #337ab7;
+                    border-color: #2e6da4;
+                }
+                
+                .btn {
+                    display: inline-block;
+                    padding: 6px 12px;
+                    margin-bottom: 0;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 1.42857143;
+                    text-align: center;
+                    white-space: nowrap;
+                    vertical-align: middle;
+                    -ms-touch-action: manipulation;
+                    touch-action: manipulation;
+                    cursor: pointer;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    background-image: none;
+                    border: 1px solid transparent;
+                    border-radius: 4px;
+                }
+                
+                body {
+                    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+                    line-height: 1.42857143;
+                    font-size: 14px;
+                    width: 70%;
+                    margin-left: 15%;
+                    margin-left: 15%;
+                    border: 1px solid gray;
+                }
+                .code-block {
+                    background-color: #f7f7f9; 
+                    border: 1px solid #f7f7f9; 
+                    vertical-align: top;
+                }
+                .display-block {
+                    margin-left: 15%;
+                    margin-right: 15%;
+                }
+            </style>
+            <script src="../../highlighter.js"></script>
+            <script>
+                function highlight() {
+                    codeHighlighter('htmlForm');
+                }
+                function showCode(codeField) {
+                    document.getElementById(codeField).style.display = 'block';
+                    document.getElementById(codeField + 'Show').style.display = 'none';
+                    document.getElementById(codeField + 'Hide').style.display = 'block'; 
+                }
+                function hideCode(codeField) {
+                    document.getElementById(codeField + 'Show').style.display = 'block';
+                    document.getElementById(codeField).style.display = 'none';
+                    document.getElementById(codeField + 'Hide').style.display = 'none';       
+                }
+            </script>
+        </head>
+        <body onload="highlight()">
+            <div>
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="width: 30%; padding-left: 10px;"><a href="../../index.html">Home</a></td>
+                        <td style="width: 40%; text-align: center;"><h3>HTML readonly Form</h3></td>
+                        <td style="width: 30%; text-align: right; padding-right: 10px;"><a href="../../header/index.html" >Next</a></td>
+                    </tr>
+                </table>
+            </div>
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <div class="display-block">
+                            <form id="htmlFormExample" action="someAction" method="GET">
+                                <div>
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"value="adhir.aima@gmail.com" disabled>
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+                                <div>
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <div>
+                                    <label for="exampleInputNumber1">Age</label>
+                                    <input type="number" class="form-control" id="exampleInputNumber1" name="quantity" min="1" max="5" value="3" disabled>
+                                </div>
+                                <div>
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <input type="text" class="form-control" id="exampleInputName1" aria-describedby="emailHelp" value="Adhir Aima" disabled>
+                                </div>
+                                <div>
+                                    <label for="exampleSelect1">Example select</label>
+                                    <select class="form-control" id="exampleSelect1" disabled>
+                                        <option selected="selected">1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="exampleSelect2">Example multiple select</label>
+                                    <select multiple class="form-control-multi" id="exampleSelect2" disabled>
+                                        <option>1</option>
+                                        <option selected="selected">2</option>
+                                        <option>3</option>
+                                        <option selected="selected">4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="exampleTextarea">Example textarea</label>
+                                    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                                </div>
+                                <div>
+                                    <label>Check Box</label><br>
+                                    <input type="checkbox" id="checkbox1" name="vehicle1" value="Bike" checked="checked"> I have a bike<br>
+                                    <input type="checkbox" id="checkbox2" name="vehicle2" value="Car" checked="checked" disabled> I have a car
+                                </div>
+                                <fieldset>
+                                    <legend>Date Pickers</legend>
+                                    <div>
+                                        <input type="date" name="bday" id="bday" value="1979-12-31" disabled><br>
+                                        Enter a date before 1980-01-01:
+                                        <input type="date" name="bday1" id="bday1" max="1979-12-31"><br>
+                                        Enter a date after 2000-01-01:
+                                        <input type="date" name="bday2" id="bday2" min="2000-01-02"><br>
+                                        Birthday (date and time):
+                                        <input type="datetime-local" id="bdaytime" name="bdaytime">
+                                    </div>
+                                </fieldset>
+                                <div>
+                                    <label for="exampleInputFile">File input</label>
+                                    <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                                    <small id="fileHelp" class="form-text text-muted">This ishelp text for above input. It's lighter and easily wraps.</small>
+                                </div>
+                                <fieldset>
+                                    <legend>Radio buttons</legend>
+                                    <div>
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                        Option one is this and that&mdash;be sure to include why it's great
+                                    </label>
+                                    </div>
+                                    <div>
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                        Option two can be something else and selecting it will deselect option one
+                                    </label>
+                                    </div>
+                                    <div>
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+                                        Option three is disabled
+                                    </label>
+                                    </div>
+                                </fieldset>
+                                <div>
+                                    <label>
+                                    <input type="checkbox">
+                                    Check me out
+                                    </label>
+                                </div>
+                                <button type="submit" id="htmlFormSubmitclass" class="btn btn-primary">Submit</button>
+                                <button type="reset" id="htmlFormResetclass" class="btn btn-primary">Reset</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="display-block">
+                            <button id="htmlFormShow" onclick="showCode('htmlForm')">Show Code</a>
+                            <button id="htmlFormHide" onclick="hideCode('htmlForm')" style="display: none;">Hide Code</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="htmlForm" class="code-block" style="display: none">
+                            <pre><code>
+                        &lt;form id="htmlFormExample" action="someAction" method="GET"&gt;
+                            &lt;div&gt;
+                                &lt;label for="exampleInputEmail1"&gt;Email address&lt;/label&gt;
+                                &lt;input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"value="adhir.aima@gmail.com" disabled&gt;
+                                &lt;small id="emailHelp" class="form-text text-muted"&gt;We'll never share your email with anyone else.&lt;/small&gt;
+                            &lt;/div&gt;
+                            &lt;div&gt;
+                                &lt;label for="exampleInputPassword1"&gt;Password&lt;/label&gt;
+                                &lt;input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"&gt;
+                            &lt;/div&gt;
+                            &lt;div&gt;
+                                &lt;label for="exampleInputNumber1"&gt;Age&lt;/label&gt;
+                                &lt;input type="number" class="form-control" id="exampleInputNumber1" name="quantity" min="1" max="5" value="3" disabled&gt;
+                            &lt;/div&gt;
+                            &lt;div&gt;
+                                &lt;label for="exampleInputEmail1"&gt;Name&lt;/label&gt;
+                                &lt;input type="text" class="form-control" id="exampleInputName1" aria-describedby="emailHelp" value="Adhir Aima" disabled&gt;
+                            &lt;/div&gt;
+                            &lt;div&gt;
+                                &lt;label for="exampleSelect1"&gt;Example select&lt;/label&gt;
+                                &lt;select class="form-control" id="exampleSelect1" disabled&gt;
+                                    &lt;option selected="selected"&gt;1&lt;/option&gt;
+                                    &lt;option&gt;2&lt;/option&gt;
+                                    &lt;option&gt;3&lt;/option&gt;
+                                    &lt;option&gt;4&lt;/option&gt;
+                                    &lt;option&gt;5&lt;/option&gt;
+                                &lt;/select&gt;
+                            &lt;/div&gt;
+                            &lt;div&gt;
+                                &lt;label for="exampleSelect2"&gt;Example multiple select&lt;/label&gt;
+                                &lt;select multiple class="form-control-multi" id="exampleSelect2" disabled&gt;
+                                    &lt;option&gt;1&lt;/option&gt;
+                                    &lt;option selected="selected"&gt;2&lt;/option&gt;
+                                    &lt;option&gt;3&lt;/option&gt;
+                                    &lt;option selected="selected"&gt;4&lt;/option&gt;
+                                    &lt;option&gt;5&lt;/option&gt;
+                                &lt;/select&gt;
+                            &lt;/div&gt;
+                            &lt;div&gt;
+                                &lt;label for="exampleTextarea"&gt;Example textarea&lt;/label&gt;
+                                &lt;textarea class="form-control" id="exampleTextarea" rows="3"&gt;&lt;/textarea&gt;
+                            &lt;/div&gt;
+                            &lt;div&gt;
+                                &lt;label&gt;Check Box&lt;/label&gt;&lt;br&gt;
+                                &lt;input type="checkbox" id="checkbox1" name="vehicle1" value="Bike" checked="checked"&gt; I have a bike&lt;br&gt;
+                                &lt;input type="checkbox" id="checkbox2" name="vehicle2" value="Car" checked="checked" disabled&gt; I have a car
+                            &lt;/div&gt;
+                            &lt;fieldset&gt;
+                                &lt;legend&gt;Date Pickers&lt;/legend&gt;
+                                &lt;div&gt;
+                                    &lt;input type="date" name="bday" id="bday" value="1979-12-31" disabled&gt;&lt;br&gt;
+                                    Enter a date before 1980-01-01:
+                                    &lt;input type="date" name="bday1" id="bday1" max="1979-12-31"&gt;&lt;br&gt;
+                                    Enter a date after 2000-01-01:
+                                    &lt;input type="date" name="bday2" id="bday2" min="2000-01-02"&gt;&lt;br&gt;
+                                    Birthday (date and time):
+                                    &lt;input type="datetime-local" id="bdaytime" name="bdaytime"&gt;
+                                &lt;/div&gt;
+                            &lt;/fieldset&gt;
+                            &lt;div&gt;
+                                &lt;label for="exampleInputFile"&gt;File input&lt;/label&gt;
+                                &lt;input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp"&gt;
+                                &lt;small id="fileHelp" class="form-text text-muted"&gt;This ishelp text for above input. It's lighter and easily wraps.&lt;/small&gt;
+                            &lt;/div&gt;
+                            &lt;fieldset&gt;
+                                &lt;legend&gt;Radio buttons&lt;/legend&gt;
+                                &lt;div&gt;
+                                &lt;label&gt;
+                                    &lt;input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked&gt;
+                                    Option one is this and that&mdash;be sure to include why it's great
+                                &lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div&gt;
+                                &lt;label&gt;
+                                    &lt;input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"&gt;
+                                    Option two can be something else and selecting it will deselect option one
+                                &lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div&gt;
+                                &lt;label&gt;
+                                    &lt;input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled&gt;
+                                    Option three is disabled
+                                &lt;/label&gt;
+                                &lt;/div&gt;
+                            &lt;/fieldset&gt;
+                            &lt;div&gt;
+                                &lt;label&gt;
+                                &lt;input type="checkbox"&gt;
+                                Check me out
+                                &lt;/label&gt;
+                            &lt;/div&gt;
+                            &lt;button type="submit" id="htmlFormSubmitclass" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+                            &lt;button type="reset" id="htmlFormResetclass" class="btn btn-primary"&gt;Reset&lt;/button&gt;
+                        &lt;/form&gt;
+                            </code></pre>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </body>
+    </html>
+        

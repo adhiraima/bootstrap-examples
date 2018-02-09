@@ -1,0 +1,214 @@
+<html>
+    <head>
+        <link rel="stylesheet" 
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+            crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+            crossorigin="anonymous"></script>
+        <script src="../highlighter.js"></script>
+        <script>
+            function highlight() {
+                codeHighlighter('backGroundColor');
+                codeHighlighter('textColor');
+                codeHighlighter('textColorLink');
+            }
+
+            function showCode(codeField) {
+                document.getElementById(codeField).style.display = 'block';
+                document.getElementById(codeField + 'Show').style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'block';
+            }
+
+            function hideCode(codeField) {
+                document.getElementById(codeField + 'Show').style.display = 'block';
+                document.getElementById(codeField).style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'none';       
+            }
+        </script>
+        <style>
+            .custom-background {
+                background-color: orange;
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+            body {
+                width: 70%;
+                margin-left: 15%;
+                margin-left: 15%;
+                border: 1px solid gray;
+            }
+            .code-block {
+                background-color: #f7f7f9; 
+                border: 1px solid #f7f7f9; 
+                vertical-align: top;
+            }
+            .display-block {
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+        </style>
+    </head>
+    <body onload="highlight()">
+        <div id=header>
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 30%; padding-left: 10px;"><a href="../index.html">Home</a></td>
+                    <td style="width: 40%; text-align: center;"><h3>Footer</h3></td>
+                    <td style="width: 30%; text-align: right; padding-right: 10px;"><a href="../navbars/index.html" >Next</a></td>
+                </tr>
+            </table>
+        </div>
+        
+        <table style="border: solid #f7f7f9; width: 100%">
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Background color</legend>
+                        <div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>
+                        <div class="p-3 mb-2 bg-secondary text-white">.bg-secondary</div>
+                        <div class="p-3 mb-2 bg-success text-white">.bg-success</div>
+                        <div class="p-3 mb-2 bg-danger text-white">.bg-danger</div>
+                        <div class="p-3 mb-2 bg-warning text-dark">.bg-warning</div>
+                        <div class="p-3 mb-2 bg-info text-white">.bg-info</div>
+                        <div class="p-3 mb-2 bg-light text-dark">.bg-light</div>
+                        <div class="p-3 mb-2 bg-dark text-white">.bg-dark</div>
+                        <div class="p-3 mb-2 bg-white text-dark">.bg-white</div>
+                        <div class="p-3 mb-2 custom-background">.custom-background &copy; &reg; &trade;</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="backGroundColorShow" onclick="showCode('backGroundColor')">Show Code</a>
+                        <button id="backGroundColorHide" onclick="hideCode('backGroundColor')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="backGroundColor" class="code-block" style="display: none;">
+                        <pre><code>
+            &lt;style&gt; 
+                .custom-background {
+                    background-color: orange;
+                    padding-top: 2px;
+                    padding-bottom: 2px;
+                }
+            &lt;/style&gt;
+
+
+            &lt;div class="p-3 mb-2 bg-primary text-white"&gt;.bg-primary&lt;/div&gt;
+            &lt;div class="p-3 mb-2 bg-secondary text-white"&gt;.bg-secondary&lt;/div&gt;
+            &lt;div class="p-3 mb-2 bg-success text-white"&gt;.bg-success&lt;/div&gt;
+            &lt;div class="p-3 mb-2 bg-danger text-white"&gt;.bg-danger&lt;/div&gt;
+            &lt;div class="p-3 mb-2 bg-warning text-dark"&gt;.bg-warning&lt;/div&gt;
+            &lt;div class="p-3 mb-2 bg-info text-white"&gt;.bg-info&lt;/div&gt;
+            &lt;div class="p-3 mb-2 bg-light text-dark"&gt;.bg-light&lt;/div&gt;
+            &lt;div class="p-3 mb-2 bg-dark text-white"&gt;.bg-dark&lt;/div&gt;
+            &lt;div class="p-3 mb-2 bg-white text-dark"&gt;.bg-white&lt;/div&gt;
+            &lt;div class="p-3 mb-2 custom-background"&gt;.custom-background &copy; &reg; &trade; &lt;/div&gt;
+
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Text Color</legend>
+                        <p class="text-primary">.text-primary</p>
+                        <p class="text-secondary">.text-secondary</p>
+                        <p class="text-success">.text-success</p>
+                        <p class="text-danger">.text-danger</p>
+                        <p class="text-warning">.text-warning</p>
+                        <p class="text-info">.text-info</p>
+                        <p class="text-light bg-dark">.text-light</p>
+                        <p class="text-dark">.text-dark</p>
+                        <p class="text-muted">.text-muted</p>
+                        <p class="text-white bg-dark">.text-white</p>    
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="textColorShow" onclick="showCode('textColor')">Show Code</a>
+                        <button id="textColorHide" onclick="hideCode('textColor')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="textColor" class="code-block" style="display: none;">
+                        <pre><code>
+            &lt;p class="text-primary"&gt;.text-primary&lt;/p&gt;
+            &lt;p class="text-secondary"&gt;.text-secondary&lt;/p&gt;
+            &lt;p class="text-success"&gt;.text-success&lt;/p&gt;
+            &lt;p class="text-danger"&gt;.text-danger&lt;/p&gt;
+            &lt;p class="text-warning"&gt;.text-warning&lt;/p&gt;
+            &lt;p class="text-info"&gt;.text-info&lt;/p&gt;
+            &lt;p class="text-light bg-dark"&gt;.text-light&lt;/p&gt;
+            &lt;p class="text-dark"&gt;.text-dark&lt;/p&gt;
+            &lt;p class="text-muted"&gt;.text-muted&lt;/p&gt;
+            &lt;p class="text-white bg-dark"&gt;.text-white&lt;/p&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Text Color Links</legend>
+                        <p><a href="#" class="text-primary">Primary link</a></p>
+                        <p><a href="#" class="text-secondary">Secondary link</a></p>
+                        <p><a href="#" class="text-success">Success link</a></p>
+                        <p><a href="#" class="text-danger">Danger link</a></p>
+                        <p><a href="#" class="text-warning">Warning link</a></p>
+                        <p><a href="#" class="text-info">Info link</a></p>
+                        <p><a href="#" class="text-light bg-dark">Light link</a></p>
+                        <p><a href="#" class="text-dark">Dark link</a></p>
+                        <p><a href="#" class="text-muted">Muted link</a></p>
+                        <p><a href="#" class="text-white bg-dark">White link</a></p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="textColorLinkShow" onclick="showCode('textColorLink')">Show Code</a>
+                        <button id="textColorLinkHide" onclick="hideCode('textColorLink')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+                </tr>
+            <tr>
+                <td>
+                    <div id="textColorLink" class="code-block" style="display: none;">
+                        <code><pre>
+            &lt;p&gt;&lt;a href="#" class="text-primary"&gt;Primary link&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#" class="text-secondary"&gt;Secondary link&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#" class="text-success"&gt;Success link&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#" class="text-danger"&gt;Danger link&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#" class="text-warning"&gt;Warning link&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#" class="text-info"&gt;Info link&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#" class="text-light bg-dark"&gt;Light link&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#" class="text-dark"&gt;Dark link&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#" class="text-muted"&gt;Muted link&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#" class="text-white bg-dark"&gt;White link&lt;/a&gt;&lt;/p&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

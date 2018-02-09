@@ -1,0 +1,859 @@
+<html>
+    <head>
+        <link rel="stylesheet" 
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+            crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+            crossorigin="anonymous"></script>
+        <style>
+            .navbar-light {
+                background-color: #e3f2fd;
+            }
+            body {
+                width: 70%;
+                margin-left: 15%;
+                margin-left: 15%;
+                border: 1px solid gray;
+            }
+            .code-block {
+                background-color: #f7f7f9; 
+                border: 1px solid #f7f7f9; 
+                vertical-align: top;
+            }
+            .display-block {
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+        </style>
+        <script src="../highlighter.js"></script>
+        <script>
+            function highlight() {
+                codeHighlighter('baseNav');
+                codeHighlighter('pills');
+                codeHighlighter('flexNav');
+                codeHighlighter('horizontal');
+                codeHighlighter('vertical');
+                codeHighlighter('tabs');
+                codeHighlighter('tabsWithDD');
+                codeHighlighter('menubarSTD');
+                codeHighlighter('menubarColl');
+                codeHighlighter('menubarTheme');
+            }
+            function showCode(codeField) {
+                document.getElementById(codeField).style.display = 'block';
+                document.getElementById(codeField + 'Show').style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'block'; 
+            }
+            function hideCode(codeField) {
+                document.getElementById(codeField + 'Show').style.display = 'block';
+                document.getElementById(codeField).style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'none';       
+            }
+        </script>
+    </head>
+    <body onload="highlight()">
+        <div id=header>
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 30%; padding-left: 10px;"><a href="../index.html">Home</a></td>
+                    <td style="width: 40%; text-align: center;"><h3>Navbars</h3></td>
+                    <td style="width: 30%; text-align: right; padding-right: 10px;"><a href="../panels/accordian-panels/index.html" >Next</a></td>
+                </tr>
+            </table>
+        </div>
+        
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Base nav</legend>
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Active</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">Disabled</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="baseNavShow" onclick="showCode('baseNav')">Show Code</a>
+                        <button id="baseNavHide" onclick="hideCode('baseNav')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="baseNav" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;ul class="nav"&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link active" href="#"&gt;Active&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Pills</legend>
+                        <nav class="nav nav-pills nav-fill">
+                            <a class="nav-item nav-link active" href="#">Active</a>
+                            <a class="nav-item nav-link" href="#">Link</a>
+                            <a class="nav-item nav-link" href="#">Link</a>
+                            <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                        </nav>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="pillsShow" onclick="showCode('pills')">Show Code</a>
+                        <button id="pillsHide" onclick="hideCode('pills')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="pills" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;nav class="nav nav-pills nav-fill"&gt;
+                    &lt;a class="nav-item nav-link active" href="#"&gt;Active&lt;/a&gt;
+                    &lt;a class="nav-item nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-item nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-item nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                &lt;/nav&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Flex nav</legend>
+                        <nav class="nav">
+                            <a class="nav-link active" href="#">Active</a>
+                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </nav>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="flexNavShow" onclick="showCode('flexNav')">Show Code</a>
+                        <button id="flexNavHide" onclick="hideCode('flexNav')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="flexNav" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;nav class="nav"&gt;
+                    &lt;a class="nav-link active" href="#"&gt;Active&lt;/a&gt;
+                    &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                &lt;/nav&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Horizontal Alignment</legend>
+                        <nav class="nav justify-content-center">
+                            <a class="nav-link active" href="#">Active</a>
+                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </nav>
+                        <br>
+                        <nav class="nav justify-content-right">
+                            <a class="nav-link active" href="#">Active</a>
+                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </nav>
+                        <br>
+                        <nav class="nav justify-content-end">
+                            <a class="nav-link active" href="#">Active</a>
+                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </nav>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="horizontalShow" onclick="showCode('horizontal')">Show Code</a>
+                        <button id="horizontalHide" onclick="hideCode('horizontal')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="horizontal" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;nav class="nav justify-content-center"&gt;
+                    &lt;a class="nav-link active" href="#"&gt;Active&lt;/a&gt;
+                    &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                &lt;/nav&gt;
+
+                &lt;nav class="nav justify-content-right"&gt;
+                    &lt;a class="nav-link active" href="#"&gt;Active&lt;/a&gt;
+                    &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                &lt;/nav&gt;
+
+                &lt;nav class="nav justify-content-end"&gt;
+                    &lt;a class="nav-link active" href="#"&gt;Active&lt;/a&gt;
+                    &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                &lt;/nav&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Vertical Alignment</legend>
+                        <nav class="nav flex-column">
+                            <a class="nav-link active" href="#">Active</a>
+                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </nav>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="verticalShow" onclick="showCode('vertical')">Show Code</a>
+                        <button id="verticalHide" onclick="hideCode('vertical')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="vertical" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;nav class="nav flex-column"&gt;
+                    &lt;a class="nav-link active" href="#"&gt;Active&lt;/a&gt;
+                    &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                &lt;/nav&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Tabs</legend>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Active</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">Disabled</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="tabsShow" onclick="showCode('tabs')">Show Code</a>
+                        <button id="tabsHide" onclick="hideCode('tabs')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="tabs" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;ul class="nav nav-tabs"&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link active" href="#"&gt;Active&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Active</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" 
+                                    aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+                                </div>    
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">Disabled</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="tabsWithDDShow" onclick="showCode('tabsWithDD')">Show Code</a>
+                        <button id="tabsWithDDHide" onclick="hideCode('tabsWithDD')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="tabsWithDD" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;ul class="nav nav-tabs"&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link active" href="#"&gt;Active&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item dropdown"&gt;
+                        &lt;a class="nav-link dropdown-toggle" data-toggle="dropdown" 
+                                href="#" role="button" 
+                                aria-haspopup="true" aria-expanded="false"&gt;Dropdown&lt;/a&gt;
+                        &lt;div class="dropdown-menu"&gt;
+                            &lt;a class="dropdown-item"&gt;Action&lt;/a&gt;
+                            &lt;a class="dropdown-item"&gt;Another action&lt;/a&gt;
+                            &lt;a class="dropdown-item"&gt;Something else here&lt;/a&gt;
+                            &lt;div class="dropdown-divider"&gt;&lt;/div&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Separated link&lt;/a&gt;
+                        &lt;/div&gt;    
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Menubar</legend>
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                            <a class="navbar-brand" href="#">Navbar</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Link</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#">Disabled</a>
+                                </li>
+                                </ul>
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="menubarSTDShow" onclick="showCode('menubarSTD')">Show Code</a>
+                        <button id="menubarSTDHide" onclick="hideCode('menubarSTD')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="menubarSTD" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
+                    &lt;a class="navbar-brand" href="#"&gt;Navbar&lt;/a&gt;
+                    &lt;button class="navbar-toggler" type="button" data-toggle="collapse" 
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                        aria-expanded="false" aria-label="Toggle navigation"&gt;
+                        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    
+                    &lt;div class="collapse navbar-collapse" id="navbarSupportedContent"&gt;
+                        &lt;ul class="navbar-nav mr-auto"&gt;
+                        &lt;li class="nav-item active"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Home &lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item dropdown"&gt;
+                            &lt;a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"&gt;
+                            Dropdown
+                            &lt;/a&gt;
+                            &lt;div class="dropdown-menu" aria-labelledby="navbarDropdown"&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Another action&lt;/a&gt;
+                            &lt;div class="dropdown-divider"&gt;&lt;/div&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Something else here&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;/ul&gt;
+                        &lt;form class="form-inline my-2 my-lg-0"&gt;
+                            &lt;input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"&gt;
+                            &lt;button class="btn btn-outline-success my-2 my-sm-0" type="submit"&gt;Search&lt;/button&gt;
+                        &lt;/form&gt;
+                    &lt;/div&gt;
+                &lt;/nav&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Collapsable</legend>
+                        <nav class="navbar navbar-light bg-light">
+                            <a class="navbar-brand" href="#">Navbar</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent5">
+                                <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Link</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#">Disabled</a>
+                                </li>
+                                </ul>
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="menubarCollShow" onclick="showCode('menubarColl')">Show Code</a>
+                        <button id="menubarCollHide" onclick="hideCode('menubarColl')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="menubarColl" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;nav class="navbar navbar-light bg-light"&gt;
+                    &lt;a class="navbar-brand" href="#"&gt;Navbar&lt;/a&gt;
+                    &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent5" 
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"&gt;
+                        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    
+                    &lt;div class="collapse navbar-collapse" id="navbarSupportedContent5"&gt;
+                        &lt;ul class="navbar-nav mr-auto"&gt;
+                        &lt;li class="nav-item active"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Home &lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item dropdown"&gt;
+                            &lt;a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"&gt;
+                            Dropdown
+                            &lt;/a&gt;
+                            &lt;div class="dropdown-menu" aria-labelledby="navbarDropdown"&gt;
+                                &lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;
+                                &lt;a class="dropdown-item" href="#"&gt;Another action&lt;/a&gt;
+                                &lt;div class="dropdown-divider"&gt;&lt;/div&gt;
+                                &lt;a class="dropdown-item" href="#"&gt;Something else here&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;/ul&gt;
+                        &lt;form class="form-inline my-2 my-lg-0"&gt;
+                            &lt;input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"&gt;
+                            &lt;button class="btn btn-outline-success my-2 my-sm-0" type="submit"&gt;Search&lt;/button&gt;
+                        &lt;/form&gt;
+                    &lt;/div&gt;
+                &lt;/nav&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Themes</legend>
+                        <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+                            <a class="navbar-brand" href="#">Navbar</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+                                <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Link</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#">Disabled</a>
+                                </li>
+                                </ul>
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
+                        <br>
+                        <br>
+                        <nav class="navbar navbar-dark bg-primary">
+                            <a class="navbar-brand" href="#">Navbar</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent3">
+                                <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Link</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#">Disabled</a>
+                                </li>
+                                </ul>
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
+                        <br>
+                        <br>
+                        <nav class="navbar navbar-light">
+                            <a class="navbar-brand" href="#">Navbar</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent4">
+                                <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Link</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#">Disabled</a>
+                                </li>
+                                </ul>
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="menubarThemeShow" onclick="showCode('menubarTheme')">Show Code</a>
+                        <button id="menubarThemeHide" onclick="hideCode('menubarTheme')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="menubarTheme" class="code-block" style="display: none;">
+                        <pre><code>
+                &lt;nav class="navbar navbar-dark navbar-expand-lg bg-dark"&gt;
+                    &lt;a class="navbar-brand" href="#"&gt;Navbar&lt;/a&gt;
+                    &lt;button class="navbar-toggler" type="button" data-toggle="collapse" 
+                        data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent" 
+                        aria-expanded="false" aria-label="Toggle navigation"&gt;
+                        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    
+                    &lt;div class="collapse navbar-collapse" id="navbarSupportedContent2"&gt;
+                        &lt;ul class="navbar-nav mr-auto"&gt;
+                        &lt;li class="nav-item active"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Home &lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item dropdown"&gt;
+                            &lt;a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"&gt;
+                            Dropdown
+                            &lt;/a&gt;
+                            &lt;div class="dropdown-menu" aria-labelledby="navbarDropdown"&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Another action&lt;/a&gt;
+                            &lt;div class="dropdown-divider"&gt;&lt;/div&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Something else here&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;/ul&gt;
+                        &lt;form class="form-inline my-2 my-lg-0"&gt;
+                            &lt;input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"&gt;
+                            &lt;button class="btn btn-outline-success my-2 my-sm-0" type="submit"&gt;Search&lt;/button&gt;
+                        &lt;/form&gt;
+                    &lt;/div&gt;
+                &lt;/nav&gt;
+
+                &lt;nav class="navbar navbar-dark bg-primary"&gt;
+                    &lt;a class="navbar-brand" href="#"&gt;Navbar&lt;/a&gt;
+                    &lt;button class="navbar-toggler" type="button" data-toggle="collapse" 
+                        data-target="#navbarSupportedContent3" aria-controls="navbarSupportedContent" 
+                        aria-expanded="false" aria-label="Toggle navigation"&gt;
+                        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    
+                    &lt;div class="collapse navbar-collapse" id="navbarSupportedContent3"&gt;
+                        &lt;ul class="navbar-nav mr-auto"&gt;
+                        &lt;li class="nav-item active"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Home &lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item dropdown"&gt;
+                            &lt;a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"&gt;
+                            Dropdown
+                            &lt;/a&gt;
+                            &lt;div class="dropdown-menu" aria-labelledby="navbarDropdown"&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Another action&lt;/a&gt;
+                            &lt;div class="dropdown-divider"&gt;&lt;/div&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Something else here&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;/ul&gt;
+                        &lt;form class="form-inline my-2 my-lg-0"&gt;
+                            &lt;input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"&gt;
+                            &lt;button class="btn btn-outline-success my-2 my-sm-0" type="submit"&gt;Search&lt;/button&gt;
+                        &lt;/form&gt;
+                    &lt;/div&gt;
+                &lt;/nav&gt;
+
+                &lt;style&gt;
+                    .navbar-light {
+                        background-color: #e3f2fd;
+                    }
+                &lt;/style&gt;
+
+                &lt;nav class="navbar navbar-light" &gt;
+                    &lt;a class="navbar-brand" href="#"&gt;Navbar&lt;/a&gt;
+                    &lt;button class="navbar-toggler" type="button" data-toggle="collapse" 
+                        data-target="#navbarSupportedContent4" aria-controls="navbarSupportedContent" 
+                        aria-expanded="false" aria-label="Toggle navigation"&gt;
+                        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    
+                    &lt;div class="collapse navbar-collapse" id="navbarSupportedContent4"&gt;
+                        &lt;ul class="navbar-nav mr-auto"&gt;
+                        &lt;li class="nav-item active"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Home &lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item dropdown"&gt;
+                            &lt;a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" 
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"&gt;
+                            Dropdown
+                            &lt;/a&gt;
+                            &lt;div class="dropdown-menu" aria-labelledby="navbarDropdown"&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Another action&lt;/a&gt;
+                            &lt;div class="dropdown-divider"&gt;&lt;/div&gt;
+                            &lt;a class="dropdown-item" href="#"&gt;Something else here&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;/ul&gt;
+                        &lt;form class="form-inline my-2 my-lg-0"&gt;
+                            &lt;input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"&gt;
+                            &lt;button class="btn btn-outline-success my-2 my-sm-0" type="submit"&gt;Search&lt;/button&gt;
+                        &lt;/form&gt;
+                    &lt;/div&gt;
+                &lt;/nav&gt;
+                    </code></pre>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

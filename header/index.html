@@ -1,0 +1,342 @@
+<html>
+    <head>
+        <link rel="stylesheet" 
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+            crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+            crossorigin="anonymous"></script>
+        <script 
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+            crossorigin="anonymous"></script>
+        <style>
+            .navbar-light {
+                background-color: #e3f2fd;
+            }
+            body {
+                width: 70%;
+                margin-left: 15%;
+                margin-left: 15%;
+                border: 1px solid gray;
+            }
+            .code-block {
+                background-color: #cccccf; 
+                border: 1px solid #cccccf; 
+                vertical-align: top;
+            }
+            .display-block {
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+        </style>
+        <script src="../highlighter.js"></script>
+        <script>
+            function highlight() {
+                codeHighlighter('headerWithBackground');
+                codeHighlighter('headerWithImgAndText');
+                codeHighlighter('headerWithImgAndTextAndMenu');
+                codeHighlighter('customColors');
+            }
+            function showCode(codeField) {
+                document.getElementById(codeField).style.display = 'block';
+                document.getElementById(codeField + 'Show').style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'block'; 
+            }
+            function hideCode(codeField) {
+                document.getElementById(codeField + 'Show').style.display = 'block';
+                document.getElementById(codeField).style.display = 'none';
+                document.getElementById(codeField + 'Hide').style.display = 'none';       
+            }
+        </script>
+    </head>
+    <body onload="highlight()">
+        <div id="header">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 30%; padding-left: 10px;"><a href="../index.html">Home</a></td>
+                    <td style="width: 40%; text-align: center;"><h3>Header</h3></td>
+                    <td style="width: 30%; text-align: right; padding-right: 10px;"><a href="../footer/index.html" >Next</a></td>
+                </tr>
+            </table>
+        </div>
+        
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Header with Background</legend>
+                        <div class="p-3 mb-2 bg-primary text-white">.bg-primary styled Header</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="headerWithBackgroundShow" onclick="showCode('headerWithBackground')">Show Code</a>
+                        <button id="headerWithBackgroundHide" onclick="hideCode('headerWithBackground')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="headerWithBackground" class="code-clock" style="display: none;">
+                        <pre><code>
+                &lt;div class="p-3 mb-2 bg-primary text-white"&gt;.bg-primary styled Header&lt;/div&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Header With image and text</legend>
+                        <nav class="navbar navbar-light bg-light">
+                            <a class="navbar-brand" href="#">
+                                <img src="./logo.png" width="100" height="30" class="d-inline-block align-top" alt="">
+                                Clari5 &copy; &trade;
+                            </a>
+                        </nav>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="headerWithImgAndTextShow" onclick="showCode('headerWithImgAndText')">Show Code</a>
+                        <button id="headerWithImgAndTextHide" onclick="hideCode('headerWithImgAndText')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="headerWithImgAndText" class="code-clock" style="display: none;">
+                        <pre><code>
+                &lt;nav class="navbar navbar-light bg-light"&gt;
+                    &lt;a class="navbar-brand" href="#"&gt;
+                        &lt;img src="./logo.png" width="100" height="30" class="d-inline-block align-top" alt=""&gt;
+                        Clari5 &amp;copy; &amp;trade;
+                    &lt;/a&gt;
+                &lt;/nav&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Header With image and text and Menubar</legend>
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                            <a class="navbar-brand" href="#">
+                                <img src="./logo.png" width="100" height="30" class="d-inline-block align-top" alt="">
+                                Clari5 &copy; &trade;
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Link</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#">Disabled</a>
+                                </li>
+                                </ul>
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="headerWithImgAndTextAndMenuShow" onclick="showCode('headerWithImgAndTextAndMenu')">Show Code</a>
+                        <button id="headerWithImgAndTextAndMenuHide" onclick="hideCode('headerWithImgAndTextAndMenu')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="headerWithImgAndTextAndMenu" class="code-clock" style="display: none;">
+                        <pre><code>
+                &lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
+                    &lt;a class="navbar-brand" href="#"&gt;
+                        &lt;img src="./logo.png" width="100" height="30" class="d-inline-block align-top" alt=""&gt;
+                        Clari5 &copy; &trade;
+                    &lt;/a&gt;
+                    &lt;button class="navbar-toggler" type="button" data-toggle="collapse" 
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                        aria-expanded="false" aria-label="Toggle navigation"&gt;
+                        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    
+                    &lt;div class="collapse navbar-collapse" id="navbarSupportedContent"&gt;
+                        &lt;ul class="navbar-nav mr-auto"&gt;
+                        &lt;li class="nav-item active"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Home &lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item dropdown"&gt;
+                            &lt;a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"&gt;
+                            Dropdown
+                            &lt;/a&gt;
+                            &lt;div class="dropdown-menu" aria-labelledby="navbarDropdown"&gt;
+                                &lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;
+                                &lt;a class="dropdown-item" href="#"&gt;Another action&lt;/a&gt;
+                                &lt;div class="dropdown-divider"&gt;&lt;/div&gt;
+                                &lt;a class="dropdown-item" href="#"&gt;Something else here&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;/ul&gt;
+                        &lt;form class="form-inline my-2 my-lg-0"&gt;
+                            &lt;input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"&gt;
+                            &lt;button class="btn btn-success my-2 my-sm-0" type="submit"&gt;Search&lt;/button&gt;
+                        &lt;/form&gt;
+                    &lt;/div&gt;
+                &lt;/nav&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <legend>Custom Colors </legend>
+                        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+                            <a class="navbar-brand" href="#">
+                                <img src="./logo.png" width="100" height="30" class="d-inline-block align-top" alt="">
+                                Clari5 &copy; &trade;
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Link</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#">Disabled</a>
+                                </li>
+                                </ul>
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-block">
+                        <button id="customColorsShow" onclick="showCode('customColors')">Show Code</a>
+                        <button id="customColorsHide" onclick="hideCode('customColors')" style="display: none;">Hide Code</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="customColors" class="code-clock" style="display: none;">
+                        <pre><code>
+                &lt;nav class="navbar navbar-expand-lg navbar-light bg-primary"&gt;
+                    &lt;a class="navbar-brand" href="#"&gt;
+                        &lt;img src="./logo.png" width="100" height="30" class="d-inline-block align-top" alt=""&gt;
+                        Clari5 &copy; &trade;
+                    &lt;/a&gt;
+                    &lt;button class="navbar-toggler" type="button" data-toggle="collapse" 
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                        aria-expanded="false" aria-label="Toggle navigation"&gt;
+                        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    
+                    &lt;div class="collapse navbar-collapse" id="navbarSupportedContent"&gt;
+                        &lt;ul class="navbar-nav mr-auto"&gt;
+                        &lt;li class="nav-item active"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Home &lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item dropdown"&gt;
+                            &lt;a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"&gt;
+                            Dropdown
+                            &lt;/a&gt;
+                            &lt;div class="dropdown-menu" aria-labelledby="navbarDropdown"&gt;
+                                &lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;
+                                &lt;a class="dropdown-item" href="#"&gt;Another action&lt;/a&gt;
+                                &lt;div class="dropdown-divider"&gt;&lt;/div&gt;
+                                &lt;a class="dropdown-item" href="#"&gt;Something else here&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li class="nav-item"&gt;
+                            &lt;a class="nav-link disabled" href="#"&gt;Disabled&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;/ul&gt;
+                        &lt;form class="form-inline my-2 my-lg-0"&gt;
+                            &lt;input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"&gt;
+                            &lt;button class="btn btn-outline-success my-2 my-sm-0" type="submit"&gt;Search&lt;/button&gt;
+                        &lt;/form&gt;
+                    &lt;/div&gt;
+                &lt;/nav&gt;
+                        </code></pre>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

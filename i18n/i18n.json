@@ -1,0 +1,22 @@
+{
+    "en": {
+      "test": "This is a test Form",
+      "test.title": "click me!",
+      "unamelabel": "User Name",
+      "addrlabel": "Address",
+      "fnamelabel": "First Name",
+      "lnamelabel": "Last Name",
+      "submitlabel": "Submit Form",
+      "cancellabel": "Clear"
+    },
+    "fr": {
+      "test": "Ceci est un test Formulaire",
+      "test.title": "cliquez-moi!",
+      "unamelabel": "Nom d'utilisateur",
+      "addrlabel": "Adresse",
+      "fnamelabel": "Prénom",
+      "lnamelabel": "Nom de famille",
+      "submitlabel": "Envoyer un formulaire",
+      "cancellabel": "Effacer"
+    }
+}
