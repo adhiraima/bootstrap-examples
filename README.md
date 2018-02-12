@@ -1,7 +1,7 @@
 # StylingSample
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.4.
-This site is a static collection of html code examples using bootstrap 4 and jquery
+This site is a static collection of html code examples using bootstrap 4 and jquery. It is a static application and does not require any ng --command to run. You can point the browset to the filesystem or copy the folder to a webserver apps directory to start browsing through.
 
 ## Development server
 
