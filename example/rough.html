@@ -52,17 +52,53 @@
                 return split(term).pop();
             }
 
+            var jobCount = $('.results tbody tr:visible').length;
+
+            $('.no-result').hide();
+
             $("#DataTableFilter")
+                .on("keydown", function (event) {
+                    if ($("#DataTableFilter").val().indexOf(":") > 0) {
+                        console.log("returning because : is still present!!!");
+                        return;
+                    }
+                    if (event.keyCode === 8) {
+                        $("#DataTableFilter").val('');
+                        currMenu = availableTags;
+                        typSel = false;
+                        opSel = false;
+                        typeSelected = "";
+                        classSelected = "";
+                        $(".results tbody tr").each(function() {
+                            $(this).show();
+                        });
+                        
+                        jobCount = $('.results tbody tr:visible').length;
+                        
+                        if (jobCount > 1) {
+                            $('.counter').text(jobCount + ' items');
+                        } else {
+                            $('.counter').text(jobCount + ' item');
+                        }
+
+                        if (jobCount == '0') {
+                            $('.no-result').show();
+                        } else {
+                            $('.no-result').hide();
+                        }
+                    }
+                })
                 .on("keyup", function (event) {
                     if (typSel && opSel) {
+                        if ($("#DataTableFilter").val().indexOf(":") < 0) return;
                         var searchTerm = $("#DataTableFilter").val().split(':')[1].trim();
-                        
+
                         if (searchTerm.trim().length <= 0) return;
-                        
+
                         if ((opSelected === '[-]') && (searchTerm.match(/\[[0-9]-[0-9]\]/i) === null)) {
                             return;
                         }
-                        
+
                         var listItem = $('.results tbody tr').children('td' + '.' + classSelected);
 
                         var searchSplit = searchTerm.replace(/ /g, "'):containsi('");
@@ -103,13 +139,15 @@
                                 var upperBound = parseInt(searchTerm.split("-")[1].split("]")[0]);
                                 $.extend($.expr[':'], {
                                     'containsi': function (elem, i, match, array) {
-                                        return parseInt(elem.textContent || elem.innerText || '0') >= lowerBound
-                                                    &&  parseInt(elem.textContent || elem.innerText || '0') <= upperBound;
+                                        return parseInt(elem.textContent || elem.innerText ||
+                                                '0') >= lowerBound &&
+                                            parseInt(elem.textContent || elem.innerText || '0') <=
+                                            upperBound;
                                     }
                                 });
                             }
                         }
-
+                        
                         $(".results tbody tr").children('td.' + classSelected).not(":containsi('" +
                             searchSplit + "')").each(function (e) {
                             $(this).parent().hide();
@@ -120,9 +158,13 @@
                             $(this).parent().show();
                         });
 
-                        var jobCount = $('.results tbody tr:visible').length;
-
-                        $('.counter').text(jobCount + ' item');
+                        jobCount = $('.results tbody tr:visible').length;
+                        
+                        if (jobCount > 1) {
+                            $('.counter').text(jobCount + ' items');
+                        } else {
+                            $('.counter').text(jobCount + ' item');
+                        }
 
                         if (jobCount == '0') {
                             $('.no-result').show();
@@ -130,12 +172,12 @@
                             $('.no-result').hide();
                         }
                     }
+                    
                     if (event.keyCode === $.ui.keyCode.TAB &&
                         $(this).autocomplete("instance").menu.active) {
                         event.preventDefault();
                     }
-                })
-                .autocomplete({
+                }).autocomplete({
                     minLength: 0,
                     source: function (request, response) {
                         if (typeSelected == "") {
@@ -200,8 +242,7 @@
                     <th class="col-md-3 col-xs-3">City</th>
                 </tr>
                 <tr class="warning no-result">
-                    <td colspan="4">
-                        <i class="fa fa-warning"></i> No result</td>
+                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
                 </tr>
             </thead>
             <tbody>

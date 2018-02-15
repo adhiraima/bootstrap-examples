@@ -118,108 +118,300 @@
                 background: #81c6f7;
                 font-weight: bold;
             }
+            .modal {
+                display: none; 
+                position: fixed; 
+                z-index: 1; 
+                left: 0;
+                top: 0;
+                width: 100%; 
+                height: 100%; 
+                overflow: auto; 
+                background-color: rgb(0,0,0); 
+                background-color: rgba(0,0,0,0.4); 
+            }
+
+            /* Modal Content/Box */
+            .modal-content {
+                background-color: #fefefe;
+                margin: 15% auto; /* 15% from the top and centered */
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%; /* Could be more or less, depending on screen size */
+            }
+
+            /* The Close Button */
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .form_table {
+                width: 100%;
+            }
+
         </style>
         <script src="../highlighter.js"></script>
         <script>
-            $(document).ready(function() {
-                var availableTags = [
-                    "Name",
-                    "Job",
-                    "Experience",
-                    "City"
-                ];
-                var operatorMap = {
-                    "string": ["equals"],
-                    "number": [">", "<", "=", "[ - ]"]
-                };
+            var typeSelected = "";
+            var typSel = false;
+            var opSel = false;
+            var currMenu = "";
+            var classSelected = "";
+            var opSelected = "";
+            var availableTags = [
+                "Name",
+                "Job",
+                "Experience",
+                "City"
+            ];
+            var operatorMap = {
+                "string": ["contains"],
+                "number": [">", "<", "=", "[-]"]
+            };
 
-                var typeMap = {
-                    "Name": "string",
-                    "Job": "string",
-                    "Experience": "number",
-                    "City": "string"
+            var typeMap = {
+                "Name": "string",
+                "Job": "string",
+                "Experience": "number",
+                "City": "string"
+            };
+
+            var modal = document.getElementById('myModal');
+
+            var span = document.getElementsByClassName("close")[0];
+ 
+            function makeFormEditable() {
+                var items = $(".form-control").prop('disabled', true);
+                for (var i = 0; i < items.length; i++) {
+                    items[i].disabled = false;
                 }
-                $("#searchBox").focusout(function (event) {
-                    console.log("focusout of searchbox>>>>> ");
+                $('#editFormBtnGroup').hide();
+                $('#submitFormBtnGroup').show();
+            }
+
+            function closeModal() {
+                $(".modal-content").children('p').empty();
+                $('#editFormBtnGroup').show();
+                $('#submitFormBtnGroup').hide();
+                $('#myModal').hide();
+            }
+
+            function submitUserFrom() {
+                    
+            };
+
+            function deleteUserForm() {
+            };
+
+            function clearUserForm() {
+                $('#userInformationForm').find("input[type=text], textarea").val("");
+            };
+
+            function split(val) {
+                return val.split(/,\s*/);
+            }
+
+            function extractLast(term) {
+                return split(term).pop();
+            }
+
+            $(function() {
+
+                $(".searchable").click(function (event) {
+                    $('#myModal').show();
+                    var items = $(this).children('td').length;
+                    var form_template_begin = "<form id='userInformationForm' action='updateUser.do' method='POST'>";
+                    var form_tamplate_end = "</form>";
+                    for (var i = 0; i < items; i++) {
+                        var name = $(this).children('td')[i].className;
+                        var value = $(this).children('td')[i].innerHTML
+                        form_template_begin += "<div class='form-row'>"
+                        +   "<div class='form-group col-md-12'>"
+                        +       "<label for='" + name + "'><strong>" + name + "</strong></label>"
+                        +        "<input type='text' class='form-control' name='" + name + "' id='" + name + "' value='" + value + "' disabled>"
+                        +    "</div></div>";
+                    }
+                    form_template_begin += form_tamplate_end;
+                    $(".modal-content").children('p').html(form_template_begin);
                 });
-                $("#searchBox").focusin(function (event) {
-                    //console.log("Focus in of searchbox >>> ");
-                    // $("#searchBox").trigger("search.autocomplete");
-                    // $("#searchBox").keydown();
-                    $("#searchBox").autocomplete("search", '');
-                });
-                $("#searchBox").autocomplete({
-                    source: availableTags,
-                    select: function (event, ui) {
-                        console.log("firing select!!!!");
-                        var selectedAttribute = ui.item.value;
-                        ui.item.value = selectedAttribute + ' : ';
-                        
-                        var attrType = typeMap[selectedAttribute];
-                        var ops = operatorMap[typeMap[selectedAttribute]];
-                        
-                        console.log(">>>> type >>>> " + attrType);
-                        console.log(">>>> ops >>>>> " + ops);
-                        
-                        $("#searchBox").val(selectedAttribute + ' : ');
-                        $("#hiddenSearch").focus();
-                        $("#searchBox").autocomplete({
-                            source: ops
-                        }).on("focus", function() { 
+
+                
+                var jobCount = $('.results tbody tr:visible').length;
+                
+                $('.no-result').hide();
+    
+                $("#DataTableFilter")
+                    .on("keydown", function (event) {
+                        if ($("#DataTableFilter").val().indexOf(":") > 0) {
+                            return;
+                        }
+                        if (event.keyCode === 8) {
+                            $("#DataTableFilter").val('');
+                            currMenu = availableTags;
+                            typSel = false;
+                            opSel = false;
+                            typeSelected = "";
+                            classSelected = "";
+                            $(".results tbody tr").each(function() {
+                                $(this).show();
+                            });
                             
+                            jobCount = $('.results tbody tr:visible').length;
                             
-                            //console.log("focus >>> " + $("#searchBox").autocomplete("option", "source"));
-                            
-                            //return true;
-                        });
-                        // $("#searchBox").focus();
-                        $('#searchBox').on('keyup', function(event) {
-                            // to avoid JavaScript exceptions and return or retype
-                            
-                            if ($(".search").val().indexOf(':') <= 0) {
-                                $("#searchBox").autocomplete({
-                                    source: availableTags
-                                });
-                                return;
+                            if (jobCount > 1) {
+                                $('.counter').text(jobCount + ' items');
+                            } else {
+                                $('.counter').text(jobCount + ' item');
                             }
-                            if (attrType === "number") {
-                                console.log("number typea  " + $("#searchBox").autocomplete("option", "source"));
-                            }
-                            
-                            var searchTerm = $(".search").val().split(':')[1].trim();
-                            
-                            
-                            var listItem = $('.results tbody tr').children('td'+'.'+selectedAttribute);
-                            
-                            var searchSplit = searchTerm.replace(/ /g, "'):containsi('");
-
-                            console.log(">>>>> search split>>>>> " + searchSplit);
-
-                            $.extend($.expr[':'], {'containsi': function(elem, i, match, array) {
-                                    return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-                                }
-                            });
-                            // console.log("The rows >>>> " + JSON.stringify($(".results tbody tr").children('td'+'.'+selectedAttribute)));
-                            $(".results tbody tr").children('td'+'.'+selectedAttribute).not(":containsi('" + searchSplit + "')").each(function(e){
-                                $(this).parent().attr('visible','false');
-                            });
-
-                            $(".results tbody tr "+"td." + selectedAttribute+":containsi('" + searchSplit + "')").each(function(e){
-                                $(this).parent().attr('visible','true');
-                            });
-
-                            var jobCount = $('.results tbody tr[visible="true"]').length;
-                            
-                            $('.counter').text(jobCount + ' item');
-
-                            if(jobCount == '0') {
+    
+                            if (jobCount == '0') {
                                 $('.no-result').show();
                             } else {
                                 $('.no-result').hide();
                             }
-                        });
-                    }
-                });
+                        }
+                    })
+                    .on("keyup", function (event) {
+                        if (typSel && opSel) {
+                            if ($("#DataTableFilter").val().indexOf(":") < 0) return;
+                            var searchTerm = $("#DataTableFilter").val().split(':')[1].trim();
+    
+                            if (searchTerm.trim().length <= 0) return;
+    
+                            if ((opSelected === '[-]') && (searchTerm.match(/\[[0-9]-[0-9]\]/i) === null)) {
+                                return;
+                            }
+    
+                            var listItem = $('.results tbody tr').children('td' + '.' + classSelected);
+    
+                            var searchSplit = searchTerm.replace(/ /g, "'):containsi('");
+    
+                            if (typeSelected === "string") {
+                                $.extend($.expr[':'], {
+                                    'containsi': function (elem, i, match, array) {
+                                        return (elem.textContent || elem.innerText || '').toLowerCase()
+                                            .indexOf((match[3] || "").toLowerCase()) >= 0;
+                                    }
+                                });
+                            }
+    
+                            if (typeSelected === "number") {
+                                if (opSelected === "=") {
+                                    $.extend($.expr[':'], {
+                                        'containsi': function (elem, i, match, array) {
+                                            return parseInt(elem.textContent || elem.innerText ||
+                                                '0') = (match[3] || 0);
+                                        }
+                                    });
+                                } else if (opSelected === ">") {
+                                    $.extend($.expr[':'], {
+                                        'containsi': function (elem, i, match, array) {
+                                            return parseInt(elem.textContent || elem.innerText ||
+                                                '0') > (match[3] || 0);
+                                        }
+                                    });
+                                } else if (opSelected === "<") {
+                                    $.extend($.expr[':'], {
+                                        'containsi': function (elem, i, match, array) {
+                                            return parseInt(elem.textContent || elem.innerText ||
+                                                '0') < (match[3] || 0);
+                                        }
+                                    });
+                                } else if (opSelected === "[-]") {
+                                    var lowerBound = parseInt(searchTerm.split("-")[0].split("[")[1]);
+                                    var upperBound = parseInt(searchTerm.split("-")[1].split("]")[0]);
+                                    $.extend($.expr[':'], {
+                                        'containsi': function (elem, i, match, array) {
+                                            return parseInt(elem.textContent || elem.innerText ||
+                                                    '0') >= lowerBound &&
+                                                parseInt(elem.textContent || elem.innerText || '0') <=
+                                                upperBound;
+                                        }
+                                    });
+                                }
+                            }
+                            
+                            $(".results tbody tr").children('td.' + classSelected).not(":containsi('" +
+                                searchSplit + "')").each(function (e) {
+                                $(this).parent().hide();
+                            });
+    
+                            $(".results tbody tr").children("td." + classSelected + ":containsi('" +
+                                searchSplit + "')").each(function (e) {
+                                $(this).parent().show();
+                            });
+    
+                            jobCount = $('.results tbody tr:visible').length;
+                            
+                            if (jobCount > 1) {
+                                $('.counter').text(jobCount + ' items');
+                            } else {
+                                $('.counter').text(jobCount + ' item');
+                            }
+    
+                            if (jobCount == '0') {
+                                $('.no-result').show();
+                            } else {
+                                $('.no-result').hide();
+                            }
+                        }
+                        
+                        if (event.keyCode === $.ui.keyCode.TAB &&
+                            $(this).autocomplete("instance").menu.active) {
+                            event.preventDefault();
+                        }
+                    }).autocomplete({
+                        minLength: 0,
+                        source: function (request, response) {
+                            if (typeSelected == "") {
+                                response($.ui.autocomplete.filter(
+                                    availableTags, extractLast(request.term)));
+                                currMenu = availableTags;
+                            }
+                            if (typSel) {
+                                response($.ui.autocomplete.filter(
+                                    operatorMap[typeSelected], extractLast(request.term)));
+                                currMenu = operatorMap[typeSelected];
+                            }
+                        },
+                        focus: function () {
+                            // prevent value inserted on focus
+                            return false;
+                        },
+                        select: function (event, ui) {
+                            if (currMenu === operatorMap[typeSelected]) {
+                                opSel = true;
+                                var terms = split(this.value);
+                                terms.pop();
+                                terms.push(ui.item.value);
+                                opSelected = ui.item.value;
+                                terms.push(" : ");
+                                this.value = terms.join(" ");
+                                return false;
+                            } else {
+                                typSel = true;
+                                opSel = false;
+                                classSelected = ui.item.value;
+                                typeSelected = typeMap[ui.item.value];
+                                var terms = split(this.value);
+                                terms.pop();
+                                terms.push(ui.item.value);
+                                terms.push("");
+                                this.value = terms.join(", ");
+                                return false;
+                            }
+                        }
+                    });
             });
             function highlight() {
                 // codeHighlighter('headerWithBackground');
@@ -237,12 +429,24 @@
                 document.getElementById(codeField).style.display = 'none';
                 document.getElementById(codeField + 'Hide').style.display = 'none';       
             }
-            function editField(value) {
-                console.log('>>>>>>>> ' + value);
-            }
+            
         </script>
     </head>
     <body onload="highlight()">
+            <div id="myModal" class="modal">  
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <p></p>
+                    <div id='editFormBtnGroup'><button id='editFrmBtn' onClick='makeFormEditable()'class='btn btn-primary'>Edit</button>
+                        &nbsp;&nbsp;
+                        <button id='deleteFrmBtn' class='btn btn-danger'>Delete</button>
+                    </div>
+                    <div id='submitFormBtnGroup' style="display: none;"><button id='submitFrmBtn' class='btn btn-success'>Submit</button>
+                        &nbsp;&nbsp;
+                        <button id='clearFrmBtn' type='clear' class='btn btn-danger' onClick="clearUserForm()">Clear</button>
+                    </div>
+                </div>
+            </div>
         <div id="header">
             <table style="width: 100%;">
                 <tr>
@@ -453,7 +657,7 @@
                     <div class="tab-pane" id="searchExample" role="tabpanel">
                         <div class="tab-inner">
                             <div class="form-group pull-right">
-                                <input type="text" class="search form-control autocomplete" id="searchBox" placeholder="Type away for assistance...">
+                                <input type="text" class="search form-control autocomplete" id="DataTableFilter" placeholder="Type away for assistance...">
                             </div>
                             <span class="counter pull-right"></span>
                             <table class="table table-hover table-bordered results">
@@ -472,31 +676,31 @@
                                 <tbody>
                                     <tr class="searchable">
                                         <th scope="row">1</th>
-                                        <td class="Name">Vatanay Özbeyli</td>
-                                        <td class="Job">UI & UX</td>
+                                        <td class="Name">Swaraj Kumar</td>
+                                        <td class="Job">eCommerce</td>
                                         <td class="Experience">14</td>
-                                        <td class="City">Istanbul</td>
+                                        <td class="City">Gurgaon</td>
                                     </tr>
                                     <tr class="searchable">
                                         <th scope="row">2</th>
-                                        <td class="Name">Burak Özkan</td>
-                                        <td class="Job">Software Developer</td>
+                                        <td class="Name">Prasjant Piyush</td>
+                                        <td class="Job">UI & UX</td>
                                         <td class="Experience">8</td>
-                                        <td class="City">Istanbul</td>
+                                        <td class="City">Chennai</td>
                                     </tr>
                                     <tr class="searchable">
                                         <th scope="row">3</th>
-                                        <td class="Name">Egemen Özbeyli</td>
-                                        <td class="Job">Purchasing</td>
+                                        <td class="Name">Lovish Mittal</td>
+                                        <td class="Job">Architect</td>
                                         <td class="Experience">12</td>
-                                        <td class="City">Kocaeli</td>
+                                        <td class="City">New Delhi</td>
                                     </tr>
                                     <tr class="searchable">
                                         <th scope="row">4</th>
-                                        <td class="Name">Engin Kızıl</td>
-                                        <td class="Job">Sales</td>
+                                        <td class="Name">Manish Dipankar</td>
+                                        <td class="Job">Sales & Product Management</td>
                                         <td class="Experience">9</td>
-                                        <td class="City">Bozuyük</td>
+                                        <td class="City">Bombay</td>
                                     </tr>
                                     <tr class="searchable">
                                         <th scope="row">5</th>
