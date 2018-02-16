@@ -30,10 +30,11 @@
             }
             body {
                 width: 90%;
-                margin-left: 5%;
+                height: 100%;
                 margin-left: 5%;
                 border: 1px solid gray;
             }
+
             .code-block {
                 background-color: #cccccf; 
                 border: 1px solid #cccccf; 
@@ -51,11 +52,11 @@
             }
 
             #main-content {
-                min-height: 80%; height: auto !important; height: 80%;
+                min-height: 82.25%; height: auto !important; height: 82.25%;
             }
             .seperator {
                 border-right: 1px solid #cccccf;
-                min-height: 80%; height: auto !important; height: 80%;
+                min-height: 82.25%; height: auto !important; height: 82.25%;
             }
             /* Navigation class CustomNav styles */
             .customNav {
@@ -75,7 +76,7 @@
 
             .customNav a {
                 display: inline-block;
-                padding: 10px;
+                padding: 5px;
                 text-decoration: none;
                 text-transform: uppercase;
                 font-family: "Roboto", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -159,6 +160,10 @@
                 width: 100%;
             }
 
+            .scrollable {
+                overflow-y: auto;
+            }
+
         </style>
         <script src="../highlighter.js"></script>
         <script>
@@ -168,6 +173,8 @@
             var currMenu = "";
             var classSelected = "";
             var opSelected = "";
+            var rowClickedUserInfo = '';
+
             var availableTags = [
                 "Name",
                 "Job",
@@ -177,6 +184,13 @@
             var operatorMap = {
                 "string": ["contains"],
                 "number": [">", "<", "=", "[-]"]
+            };
+
+            var editClassMap = {
+                "Name": "text",
+                "Job": "text",
+                "Experience": "number",
+                "City": "text"
             };
 
             var typeMap = {
@@ -211,11 +225,40 @@
             };
 
             function deleteUserForm() {
+                var row = $('.results tbody tr').children('th:contains("' + rowClickedUserInfo + '")').parent();
+                $(".modal-content").children('p').empty();
+                $('#myModal').hide();
+                var okDel = confirm("Proceed with delete?");
+                if (okDel) {
+                    row.remove();
+                } else {
+                    return false;
+                }
             };
 
             function clearUserForm() {
                 $('#userInformationForm').find("input[type=text], textarea").val("");
             };
+
+            function saveUserRowToTable() {
+                var valuesToSave = $(".results tbody tr:last").find('input');
+
+                var saveRowTemplate = '<tr class="editable">'
+                    + '<th scope="row">' + $(".results tbody tr:last").find('th').text() + '</th>'
+                    + '<td class="Name">' + valuesToSave[0].value + '</td>'
+                    + '<td class="Job">' + valuesToSave[1].value + '</td>'
+                    + '<td class="Experience">' + valuesToSave[2].value + '</td>'
+                    + '<td class="City">' + valuesToSave[3].value + '</td>'
+                    + '</tr>';
+                $(".results tbody tr.editable").remove();
+                $(".results tbody").append(saveRowTemplate);
+                $('.add-user').show();
+            }
+
+            function cancelSaveUserRowToTable() {
+                $(".results tbody tr.editable").remove();
+                $('.add-user').show();
+            }
 
             function split(val) {
                 return val.split(/,\s*/);
@@ -225,9 +268,28 @@
                 return split(term).pop();
             }
 
+            function getInputTypeForClass(clss) {
+                return editClassMap.clss;
+            }
+
             $(function() {
+                $(".add-user").click(function (event) {
+                    $('.add-user').hide();
+                    var last = parseInt($(".results tbody tr:last th").text());
+                    var editRowTemplate = '<tr class="editable">'
+                        + '<th scope="row">' + (++last) + '</th>'
+                        + '<td class="Name"><input type="'+ getInputTypeForClass("Name") + '" style="width: 100%; border: 1px solid grey;"></td>'
+                        + '<td class="Job"><input type="'+ getInputTypeForClass("Job") + '" style="width: 100%; border: 1px solid grey;"></td>'
+                        + '<td class="Experience"><input type="'+ getInputTypeForClass("Experience") + '" style="width: 100%; border: 1px solid grey;"></td>'
+                        + '<td class="City"><input type="'+ getInputTypeForClass("City") + '" style="width: 100%; border: 1px solid grey;"></td>'
+                        + '<td><a href="#" onclick="saveUserRowToTable()"><img src="./done.png"/></a></td>'
+                        + '<td><a href="#" onclick="cancelSaveUserRowToTable()"><img src="./cancel.jpeg"/></a></td>'
+                    + '</tr>';
+                    $(".results tbody").append(editRowTemplate);
+                });
 
                 $(".searchable").click(function (event) {
+                    rowClickedUserInfo = $(this).children('th').text();
                     $('#myModal').show();
                     var items = $(this).children('td').length;
                     var form_template_begin = "<form id='userInformationForm' action='updateUser.do' method='POST'>";
@@ -439,7 +501,7 @@
                     <p></p>
                     <div id='editFormBtnGroup'><button id='editFrmBtn' onClick='makeFormEditable()'class='btn btn-primary'>Edit</button>
                         &nbsp;&nbsp;
-                        <button id='deleteFrmBtn' class='btn btn-danger'>Delete</button>
+                        <button id='deleteFrmBtn' class='btn btn-danger' onClick='deleteUserForm()'>Delete</button>
                     </div>
                     <div id='submitFormBtnGroup' style="display: none;"><button id='submitFrmBtn' class='btn btn-success'>Submit</button>
                         &nbsp;&nbsp;
@@ -655,7 +717,7 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="searchExample" role="tabpanel">
-                        <div class="tab-inner">
+                        <div class="tab-inner scrollable">
                             <div class="form-group pull-right">
                                 <input type="text" class="search form-control autocomplete" id="DataTableFilter" placeholder="Type away for assistance...">
                             </div>
@@ -732,6 +794,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <button type="button" class="btn btn-success add-user">Add User</button>                          
                         </div>
                     </div>
                     <div class="tab-pane" id="paginationExample" role="tabpanel">
