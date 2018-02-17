@@ -378,7 +378,7 @@
                                     $.extend($.expr[':'], {
                                         'containsi': function (elem, i, match, array) {
                                             return parseInt(elem.textContent || elem.innerText ||
-                                                '0') = (match[3] || 0);
+                                                '0') == (match[3] || 0);
                                         }
                                     });
                                 } else if (opSelected === ">") {
