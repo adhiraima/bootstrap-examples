@@ -289,11 +289,11 @@
                     var last = parseInt($(".results tbody tr:last th").text());
                     var editRowTemplate = '<tr class="editable">'
                         + '<th scope="row">' + (++last) + '</th>'
-                        + '<td class="Name"><input type="'+ getInputTypeForClass("Name") + '" style="width: 100%; border: 1px solid grey;"></td>'
-                        + '<td class="Job"><input type="'+ getInputTypeForClass("Job") + '" style="width: 100%; border: 1px solid grey;"></td>'
-                        + '<td class="Experience"><input type="'+ getInputTypeForClass("Experience") + '" style="width: 100%; border: 1px solid grey;"></td>'
-                        + '<td class="City"><input type="'+ getInputTypeForClass("City") + '" style="width: 100%; border: 1px solid grey;"></td>'
-                        + '<td><a href="#" onclick="saveUserRowToTable()"><img src="./done.png"/></a></td>'
+                        + '<td class="Name"><input type="'+ getInputTypeForClass("Name") + '" style="width: 100%;" class="form-control"></td>'
+                        + '<td class="Job"><input type="'+ getInputTypeForClass("Job") + '" style="width: 100%;" class="form-control"></td>'
+                        + '<td class="Experience"><input type="'+ getInputTypeForClass("Experience") + '" style="width: 100%;" class="form-control"></td>'
+                        + '<td class="City"><input type="'+ getInputTypeForClass("City") + '" style="width: 100%;" class="form-control"></td>'
+                        + '<td><a style="vertical-align: center;" href="#" onclick="saveUserRowToTable()"><img src="./done.png"/></a></td>'
                         + '<td><a href="#" onclick="cancelSaveUserRowToTable()"><img src="./cancel.jpeg"/></a></td>'
                     + '</tr>';
                     $(".results tbody").append(editRowTemplate);
@@ -359,7 +359,6 @@
                             if ((opSelected === '[-]') && (searchTerm.match(/\[[0-9]+-[0-9]+\]/i) === null)) {
                                 return;
                             }
-                            console.log("coming here in search >>>> " + searchTerm);
                             var listItem = $('.results tbody tr').children('td' + '.' + classSelected);
     
                             var searchSplit = searchTerm.replace(/ /g, "'):containsi('");
@@ -397,10 +396,8 @@
                                         }
                                     });
                                 } else if (opSelected === "[-]") {
-                                    console.log("coming here in range search >>>>>");
                                     var lowerBound = parseInt(searchTerm.split("-")[0].split("[")[1]);
                                     var upperBound = parseInt(searchTerm.split("-")[1].split("]")[0]);
-                                    console.log("Upper>>>> " + upperBound + " >>>>> lower >>>>> " + lowerBound);
                                     $.extend($.expr[':'], {
                                         'containsi': function (elem, i, match, array) {
                                             return parseInt(elem.textContent || elem.innerText ||
@@ -484,40 +481,35 @@
                         }
                     });
             });
-            function highlight() {
-                // codeHighlighter('headerWithBackground');
-                // codeHighlighter('headerWithImgAndText');
-                // codeHighlighter('headerWithImgAndTextAndMenu');
-                // codeHighlighter('customColors');
-            }
+            
             function showCode(codeField) {
                 document.getElementById(codeField).style.display = 'block';
                 document.getElementById(codeField + 'Show').style.display = 'none';
                 document.getElementById(codeField + 'Hide').style.display = 'block'; 
             }
+
             function hideCode(codeField) {
                 document.getElementById(codeField + 'Show').style.display = 'block';
                 document.getElementById(codeField).style.display = 'none';
                 document.getElementById(codeField + 'Hide').style.display = 'none';       
-            }
-            
+            }     
         </script>
     </head>
-    <body onload="highlight()">
-            <div id="myModal" class="modal">  
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal()">&times;</span>
-                    <p></p>
-                    <div id='editFormBtnGroup'><button id='editFrmBtn' onClick='makeFormEditable()' class='btn btn-primary'>Edit</button>
-                        &nbsp;&nbsp;
-                        <button id='deleteFrmBtn' class='btn btn-danger' onClick='deleteUserForm()'>Delete</button>
-                    </div>
-                    <div id='submitFormBtnGroup' style="display: none;"><button id='submitFrmBtn' class='btn btn-success' onclick="submitUserFrom()">Submit</button>
-                        &nbsp;&nbsp;
-                        <button id='clearFrmBtn' type='clear' class='btn btn-danger' onClick="clearUserForm()">Clear</button>
-                    </div>
+    <body>
+        <div id="myModal" class="modal">  
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <p></p>
+                <div id='editFormBtnGroup'><button id='editFrmBtn' onClick='makeFormEditable()' class='btn btn-primary'>Edit</button>
+                    &nbsp;&nbsp;
+                    <button id='deleteFrmBtn' class='btn btn-danger' onClick='deleteUserForm()'>Delete</button>
+                </div>
+                <div id='submitFormBtnGroup' style="display: none;"><button id='submitFrmBtn' class='btn btn-success' onclick="submitUserFrom()">Submit</button>
+                    &nbsp;&nbsp;
+                    <button id='clearFrmBtn' type='clear' class='btn btn-danger' onClick="clearUserForm()">Clear</button>
                 </div>
             </div>
+        </div>
         <div id="header">
             <table style="width: 100%;">
                 <tr>
