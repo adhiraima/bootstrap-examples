@@ -280,6 +280,10 @@
             }
 
             $(function() {
+                var jobCount = $('.results tbody tr:visible').length;
+                
+                $('.no-result').hide();
+                
                 $(".add-user").click(function (event) {
                     $('.add-user').hide();
                     var last = parseInt($(".results tbody tr:last th").text());
@@ -295,7 +299,7 @@
                     $(".results tbody").append(editRowTemplate);
                 });
 
-                $(".searchable").click(function (event) {
+                $(".results").on('click', '.searchable', function (event) {
                     rowClickedUserInfo = $(this).children('th').text();
                     $('#myModal').show();
                     var items = $(this).children('td').length;
@@ -314,11 +318,6 @@
                     $(".modal-content").children('p').html(form_template_begin);
                 });
 
-                
-                var jobCount = $('.results tbody tr:visible').length;
-                
-                $('.no-result').hide();
-    
                 $("#DataTableFilter")
                     .on("keydown", function (event) {
                         if ($("#DataTableFilter").val().indexOf(":") > 0) {
@@ -357,10 +356,10 @@
     
                             if (searchTerm.trim().length <= 0) return;
     
-                            if ((opSelected === '[-]') && (searchTerm.match(/\[[0-9]-[0-9]\]/i) === null)) {
+                            if ((opSelected === '[-]') && (searchTerm.match(/\[[0-9]+-[0-9]+\]/i) === null)) {
                                 return;
                             }
-    
+                            console.log("coming here in search >>>> " + searchTerm);
                             var listItem = $('.results tbody tr').children('td' + '.' + classSelected);
     
                             var searchSplit = searchTerm.replace(/ /g, "'):containsi('");
@@ -375,6 +374,7 @@
                             }
     
                             if (typeSelected === "number") {
+                                console.log("Coming here in number search >>>>>");
                                 if (opSelected === "=") {
                                     $.extend($.expr[':'], {
                                         'containsi': function (elem, i, match, array) {
@@ -397,8 +397,10 @@
                                         }
                                     });
                                 } else if (opSelected === "[-]") {
+                                    console.log("coming here in range search >>>>>");
                                     var lowerBound = parseInt(searchTerm.split("-")[0].split("[")[1]);
                                     var upperBound = parseInt(searchTerm.split("-")[1].split("]")[0]);
+                                    console.log("Upper>>>> " + upperBound + " >>>>> lower >>>>> " + lowerBound);
                                     $.extend($.expr[':'], {
                                         'containsi': function (elem, i, match, array) {
                                             return parseInt(elem.textContent || elem.innerText ||
