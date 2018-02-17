@@ -221,7 +221,14 @@
             }
 
             function submitUserFrom() {
-                    
+                var row = $('.results tbody tr').children('th:contains("' + rowClickedUserInfo + '")').parent();
+                for (var i = 0; i < availableTags.length; i++) {
+                    row.find('td.' + availableTags[i]).text($('#' + availableTags[i]).val());
+                } 
+                $(".modal-content").children('p').empty();
+                $("#submitFormBtnGroup").hide();
+                $('#editFormBtnGroup').show();
+                $('#myModal').hide();
             };
 
             function deleteUserForm() {
@@ -243,7 +250,7 @@
             function saveUserRowToTable() {
                 var valuesToSave = $(".results tbody tr:last").find('input');
 
-                var saveRowTemplate = '<tr class="editable">'
+                var saveRowTemplate = '<tr class="searchable">'
                     + '<th scope="row">' + $(".results tbody tr:last").find('th').text() + '</th>'
                     + '<td class="Name">' + valuesToSave[0].value + '</td>'
                     + '<td class="Job">' + valuesToSave[1].value + '</td>'
@@ -300,7 +307,7 @@
                         form_template_begin += "<div class='form-row'>"
                         +   "<div class='form-group col-md-12'>"
                         +       "<label for='" + name + "'><strong>" + name + "</strong></label>"
-                        +        "<input type='text' class='form-control' name='" + name + "' id='" + name + "' value='" + value + "' disabled>"
+                        +        "<input type='text' class='form-control " + name + "' name='" + name + "' id='" + name + "' value='" + value + "' disabled>"
                         +    "</div></div>";
                     }
                     form_template_begin += form_tamplate_end;
@@ -499,11 +506,11 @@
                 <div class="modal-content">
                     <span class="close" onclick="closeModal()">&times;</span>
                     <p></p>
-                    <div id='editFormBtnGroup'><button id='editFrmBtn' onClick='makeFormEditable()'class='btn btn-primary'>Edit</button>
+                    <div id='editFormBtnGroup'><button id='editFrmBtn' onClick='makeFormEditable()' class='btn btn-primary'>Edit</button>
                         &nbsp;&nbsp;
                         <button id='deleteFrmBtn' class='btn btn-danger' onClick='deleteUserForm()'>Delete</button>
                     </div>
-                    <div id='submitFormBtnGroup' style="display: none;"><button id='submitFrmBtn' class='btn btn-success'>Submit</button>
+                    <div id='submitFormBtnGroup' style="display: none;"><button id='submitFrmBtn' class='btn btn-success' onclick="submitUserFrom()">Submit</button>
                         &nbsp;&nbsp;
                         <button id='clearFrmBtn' type='clear' class='btn btn-danger' onClick="clearUserForm()">Clear</button>
                     </div>
