@@ -164,6 +164,24 @@
                 overflow-y: auto;
             }
 
+            .focus {
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            .focussed {
+                background-color: #aad0f8;
+                color: #000;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            .pageNumber {
+                padding: 2px;
+            }
+
         </style>
         <script src="../highlighter.js"></script>
         <script>
@@ -1271,25 +1289,52 @@
                                 </tbody>
                             </table>
                         </div>
-                        <nav aria-label="Pagination for pageExaple" class="col-sm-12 text-center"
-                                style="position: absolute;bottom: 0;">
-                            <ul class="pagination col-sm-offset-2 text-center">
-                                <li class="page-item">
-                                    <a class="page-link" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link">3</a>
-                                </li>
-                                <li class="page-item">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <script>
+                            $(document).ready(function() {
+                                var currPage = 1;
+                                var totalRows = $('#pageExample').find('tbody tr:has(td)').length;
+                                var recordPerPage = 5;
+                                var totalPages = Math.ceil(totalRows / recordPerPage);
+                                var $pages = $('<div id="pages"></div>');
+                                for (i = 0; i < totalPages; i++) {
+                                    if (currPage == (i + 1)) {
+                                        $('<span class="pageNumber focussed" id="page' + (i + 1) + '" style="pointer-events: none;">&nbsp;' + (i + 1) + '</span>').appendTo($pages);
+                                    } else {
+                                        $('<span class="pageNumber" id="page' + (i + 1) + '">&nbsp;' + (i + 1) + '</span>').appendTo($pages);
+                                    }
+                                }
+                                
+                                $pages.appendTo('#pageExample');
+                    
+                                $('.pageNumber').hover(
+                                    function() {
+                                        $(this).addClass('focus');
+                                    },
+                                    function() {
+                                        $(this).removeClass('focus');
+                                    }
+                                );
+                    
+                                $('#pageExample').find('tbody tr:has(td)').hide();
+                                var tr = $('#pageExample tbody tr:has(td)');
+                                for (var i = 0; i <= recordPerPage - 1; i++) {
+                                    $(tr[i]).show();
+                                }
+                                $('span').click(function(event) {
+                                    $('#page' + currPage).css("pointer-events", "auto");
+                                    $('#page' + currPage).removeClass('focussed');
+                                    $(this).addClass('focussed');
+                                    $(this).css("pointer-events", "none");
+                                    currPage = parseInt($(this).text());
+                                    $('#pageExample').find('tbody tr:has(td)').hide();
+                                    var nBegin = ($(this).text() - 1) * recordPerPage;
+                                    var nEnd = $(this).text() * recordPerPage - 1;
+                                    for (var i = nBegin; i <= nEnd; i++) {
+                                        $(tr[i]).show();
+                                    }
+                                });
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
